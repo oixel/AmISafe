@@ -1,4 +1,4 @@
-//hello
+// message from Krithika
 async function fetchCrimeData(url) {
     try {
         var data = await fetch(url).then((response) => response.json());
@@ -9,15 +9,7 @@ async function fetchCrimeData(url) {
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-// comment from Krithika
-=======
 // Fetches data from json
->>>>>>> 52ab090a6083d899768df54fda8d45245743e7de
-=======
-// Fetches data from open data JSON file
->>>>>>> 9ea19cd427478eaf2c840bd7303d4f066ee12a64
 async function setCrime(index) {
     var data = await fetchCrimeData("https://data.cityofgainesville.org/resource/gvua-xt9q.json");
     var crime = data[index]
