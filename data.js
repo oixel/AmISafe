@@ -1,9 +1,16 @@
-//hello
-//hi
+let field = {
+    CRIME: 9,
+    DATE: 10,
+    ADDRESS: 18
+};
+
+var allCrimes = null;
+
 async function fetchCrimeData(url) {
     try {
-        var data = await fetch(url).then((response) => response.json());
-        return data;
+        const response = await fetch(url);
+        const data = await response.json();
+        allCrimes = data["data"];
     }
     catch (error) {
         console.error(f`Error fetching CSV data: ${error}.`);
@@ -12,14 +19,11 @@ async function fetchCrimeData(url) {
 
 // Fetches data from open data JSON file from city of gainesville
 async function setCrime(index) {
-    var data = await fetchCrimeData("https://data.cityofgainesville.org/resource/gvua-xt9q.json");
-    var crime = data[index]
-    var crimeStr = `${crime["narrative"]} occurred on ${crime["report_day_of_week"]} at ${crime["address"]}.`
+    //var crimes = await fetchCrimeData("./Data.json");
+    var crime = allCrimes[index];
+    var crimeStr = `${crime[field.CRIME]} occurred on ${crime[field.DATE]} at ${crime[field.ADDRESS]}.`
     document.getElementById("data-text").textContent = crimeStr;
 }
-
-// Updates text to be most recent crime
-setCrime(0);
 
 // Grabs inputted number in text input and loads the data from it. Called on button press
 document.getElementById('input-box').addEventListener('submit', function (e) {
@@ -35,3 +39,10 @@ document.getElementById('input-box').addEventListener('submit', function (e) {
     // Updates text to show crime of inputted index
     setCrime(index);
 });
+
+async function main() {
+    await fetchCrimeData("./Data.json");
+    setCrime(0);
+}
+
+main();
