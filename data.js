@@ -8,7 +8,11 @@ async function fetchCrimeData(url) {
     }
 }
 
+<<<<<<< HEAD
 // comment from Krithika
+=======
+// Fetches data from json
+>>>>>>> 52ab090a6083d899768df54fda8d45245743e7de
 async function setCrime(index) {
     var data = await fetchCrimeData("https://data.cityofgainesville.org/resource/gvua-xt9q.json");
     var crime = data[index]
