@@ -17,7 +17,8 @@ async function fetchCrimeData(url) {
     }
 }
 
-// Fetches data from open data JSON file from city of gainesville
+// another message - Krithika
+// Fetches data from json
 async function setCrime(index) {
     //var crimes = await fetchCrimeData("./Data.json");
     var crime = allCrimes[index];
