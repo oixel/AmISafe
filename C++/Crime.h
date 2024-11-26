@@ -1,28 +1,37 @@
 #include <iostream>
-#include <unordered_map>
 using namespace std;
 
-class Crime
+struct Crime
 {
-private:
-public:
-    unordered_map<string, string> data;
+    // String-based attributes
+    string incident;
+    string date;
+    string address;
 
-    // int radius; // we may not need this right now
+    // Float-based attributes
+    float latitude;
+    float longitude;
+
+    // Calculated from longitude and latitude to user
+    float distance;
 
     // Default constructor
-    Crime(unordered_map<string, string> data)
+    Crime(string incident, string date, string address, float latitude, float longitude)
     {
-        this->data = data;
+        this->incident = incident;
+        this->date = date;
+        this->address = address;
+        this->latitude = latitude;
+        this->longitude = longitude;
     }
 
     // Displays stored data
     void display()
     {
-        cout << "Crime: " << data["incident"] << endl;
-        cout << "Date: " << data["offense_date"] << endl;
-        cout << "Address: " << data["address"] << endl;
-        cout << "(" << data["latitude"] << ", " << data["longitude"] << ")" << endl;
+        cout << "Crime: " << incident << endl;
+        cout << "Date: " << date << endl;
+        cout << "Address: " << address << endl;
+        cout << "(" << latitude << ", " << longitude << ")" << endl;
     }
 
     // Updates distance
