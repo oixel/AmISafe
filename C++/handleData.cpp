@@ -35,7 +35,7 @@ vector<Crime> getData(string filepath)
     // Stores all crimes with valid data
     vector<Crime> crimes = {};
 
-    // Opens file at inputted pathat and stores it in file variable
+    // Opens file at inputted path and stores it in file variable
     ifstream file(filepath);
 
     // Stores the current line in CSV file
@@ -67,7 +67,20 @@ vector<Crime> getData(string filepath)
 
 int main()
 {
+    // Distance testing
+    Crime crime("Test", "Date", "Address", 29.6465, -82.3480);
+    crime.setPreciseDistance(29.69052, -82.33503);
+    crime.display();
+    cout << endl;
+
+    Crime crime2("Test 2", "Date", "Address", 29.6465, -82.3480);
+    crime2.setDistance(29.69052, -82.33503);
+    crime2.display();
+    cout << endl;
+
+    // Get all crimes recorded crimes in Gainesville with adequate data
     vector<Crime> crimes = getData("Crime_Responses.csv");
     crimes[0].display();
+
     return 0;
 }
