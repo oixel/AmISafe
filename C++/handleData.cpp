@@ -2,29 +2,21 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include <unordered_map>
 
 using namespace std;
 
-// Stores the different field names present in the data
-vector<string> fields = {
-    "id",
-    "incident",
-    "report_date",
-    "offense_date",
-    "report_hour",
-    "report_weekday",
-    "offense_hour",
-    "offense_weekday",
-    "city",
-    "state",
-    "address",
-    "latitude",
-    "longitude",
-    "location",
+// Stores the indices of the different imported field names present in the data
+enum fields
+{
+    incident = 1,
+    date = 3,
+    address = 10,
+    latitude = 11,
+    longitude = 12
 };
 
-unordered_map<string, string> split(string str)
+// Splits line at commas and places data into a vector
+vector<string> split(string str)
 {
     stringstream stream(str);
     vector<string> data;
@@ -35,22 +27,18 @@ unordered_map<string, string> split(string str)
         data.push_back(value);
     }
 
-    unordered_map<string, string> mappedData;
-    for (int i = 0; i < fields.size(); i++)
-    {
-        mappedData[fields[i]] = data[i];
-    }
-
-    return mappedData;
+    return data;
 }
 
 vector<Crime> getData(string filepath)
 {
+    // Stores all crimes with valid data
     vector<Crime> crimes = {};
 
-    ifstream file;
-    file.open(filepath);
+    // Opens file at inputted pathat and stores it in file variable
+    ifstream file(filepath);
 
+    // Stores the current line in CSV file
     string line = "";
 
     // Ignore first line since it is the unformatted field names
@@ -59,13 +47,19 @@ vector<Crime> getData(string filepath)
     // Loops through all data in CSV files
     while (getline(file, line))
     {
-        unordered_map<string, string> data = split(line);
+        // Splits current line at delimiter of ','
+        vector<string> data = split(line);
 
-        if (data["latitude"].empty() || data["longitude"].empty())
+        // Only creates crime objects out of crimes with valid data
+        try
+        {
+            Crime newCrime(data[incident], data[date], data[address], stof(data[longitude]), stof(data[latitude]));
+            crimes.push_back(newCrime);
+        }
+        catch (exception _)
+        {
             continue;
-
-        Crime newCrime(data);
-        crimes.push_back(newCrime);
+        }
     }
 
     return crimes;
