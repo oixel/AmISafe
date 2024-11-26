@@ -20,7 +20,17 @@ public:
 
     //
     vector<Crime> getCrimesInRange(float distance);
+
+    // constructor
+    MinHeap(vector<Crime> &crimes){
+        for(auto crime : crimes){
+            insert(crime);
+        }
+    }
 };
+
+
+
 
 // Returns all the crime in a given distance from current position
 vector<Crime> MinHeap::getCrimesInRange(float radius)
