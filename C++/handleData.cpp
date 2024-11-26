@@ -56,6 +56,11 @@ vector<Crime> getData(string filepath)
         {
             Crime newCrime(data[incident], data[date], data[address], stof(data[latitude]), stof(data[longitude]));
             newCrime.setDistance(29.69052, -82.33503);
+
+            // Limits crimes to Gainesville
+            if (newCrime.distance > 100)
+                continue;
+
             crimes.push_back(newCrime);
         }
         catch (exception _)
