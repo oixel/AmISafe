@@ -121,9 +121,12 @@ public:
             }
 
             // Otherwise, add values in bucket to output if in radius of current position
-            if (bucket[0].distance <= radius)
+            for (Crime crime : bucket)
             {
-                crimesInRange.insert(crimesInRange.end(), bucket.begin(), bucket.end());
+                if (crime.distance <= radius)
+                {
+                    crimesInRange.push_back(crime);
+                }
             }
         }
 
