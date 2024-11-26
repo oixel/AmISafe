@@ -54,9 +54,9 @@ vector<Crime> getData(string filepath)
         // Only creates crime objects out of crimes with valid data
         try
         {
-            Crime newCrime(data[incident], data[date], data[address], stof(data[longitude]), stof(data[latitude]));
+            Crime newCrime(data[incident], data[date], data[address], stof(data[latitude]), stof(data[longitude]));
+            newCrime.setDistance(29.69052, -82.33503);
             crimes.push_back(newCrime);
-
         }
         catch (exception _)
         {
@@ -99,7 +99,6 @@ int main()
     // insert into hash map, create hash map object
     HashMap hashTable(100, crimes);
     cout << hashTable.entries << endl;
-
 
     return 0;
 }
