@@ -102,7 +102,7 @@ int main()
     // insert into min heap, create min heap object
 
     // insert into hash map, create hash map object
-    HashMap hashTable(100, crimes);
+    HashMap hashTable(150, crimes);
     cout << hashTable.entries << endl;
 
     return 0;
