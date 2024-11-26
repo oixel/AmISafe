@@ -31,6 +31,20 @@ public:
         {
             insert(crime);
         }
+
+        // For testing, stores the amount of buckets actually used
+        int bucketsUsed = 0;
+        for (auto row : table)
+        {
+            if (row.size() != 0)
+                bucketsUsed++;
+        }
+
+        cout << endl;
+        cout << "Bucket data:" << endl;
+        cout << bucketsUsed << "/" << this->buckets << " used." << endl;
+        cout << this->buckets - bucketsUsed << " empty buckets." << endl;
+        cout << endl;
     }
 
     // hash function? or do we alr have the keys we just need to input it?
