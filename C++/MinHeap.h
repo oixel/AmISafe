@@ -12,15 +12,15 @@ void insert(Crime crime);
 Crime extractMin();
 void heapifyUp(int childindex);
 void heapifyDown(int index);
-vector<Crime> getClosestCrimes(float distance);
+vector<Crime> getClosestCrimes(float UserDefinedDistance);
 
 };
 
 // not sure if this is 100% accurate but will do more testing with heaps soon
-vector<Crime> MinHeap::getClosestCrimes(float distance){
+vector<Crime> MinHeap::getClosestCrimes(float UserDefinedDistance){
     vector<Crime> result;
     Crime minElement = extractMin();
-    while(minElement.distance <= distance){
+    while(minElement.distance <= UserDefinedDistance){
         result.push_back(minElement);
         minElement = extractMin();
     }
