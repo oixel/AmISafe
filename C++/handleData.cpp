@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 
 using namespace std;
 
@@ -100,16 +101,25 @@ int main()
     // cout << crimes.size() << endl;
 
     // Create min heap and fill it with all crime data
-    const float RADIUS = 0.5;
+
+    const float RADIUS = 10.0;
+    auto start = std::chrono::high_resolution_clock::now();
     MinHeap minheap1(crimes);
     cout << "Min heap size: " << minheap1.minHeap.size() << endl;
     cout << "Crimes in " << RADIUS << " mile radius: " << minheap1.getCrimesInRange(RADIUS).size() << endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
 
+    std::cout << "Elapsed time: " << elapsed.count() << " seconds" << std::endl;
 
     // Create hash map and fill it with all crime data
+    auto start2 = std::chrono::high_resolution_clock::now();
     HashMap hashTable(207, crimes);
     cout << hashTable.entries << endl;
     cout << "Crimes in " << RADIUS << " mile radius: " << hashTable.getCrimesInRange(RADIUS).size() << endl;
+    auto end2 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed2 = end2 - start2;
+    std::cout << "Elapsed time: " << elapsed2.count() << " seconds" << std::endl;
 
     return 0;
 }

@@ -31,7 +31,6 @@ public:
 
 
 
-
 // Returns all the crime in a given distance from current position
 vector<Crime> MinHeap::getCrimesInRange(float radius)
 {
