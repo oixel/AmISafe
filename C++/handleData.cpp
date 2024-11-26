@@ -1,5 +1,5 @@
-#pragma once
 #include "HashMap.h"
+#include "MinHeap.h"
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -84,26 +84,28 @@ int main()
     // float userLong = stof(userLongString);
 
     // Distance testing
-    Crime crime("Test", "Date", "Address", 29.6465, -82.3480);
-    crime.setPreciseDistance(29.69052, -82.33503);
-    crime.display();
-    cout << endl;
+    // Crime crime("Test", "Date", "Address", 29.6465, -82.3480);
+    // crime.setPreciseDistance(29.69052, -82.33503);
+    // crime.display();
+    // cout << endl;
 
-    Crime crime2("Test 2", "Date", "Address", 29.6465, -82.3480);
-    crime2.setDistance(29.69052, -82.33503);
-    crime2.display();
-    cout << endl;
+    // Crime crime2("Test 2", "Date", "Address", 29.6465, -82.3480);
+    // crime2.setDistance(29.69052, -82.33503);
+    // crime2.display();
+    // cout << endl;
 
     // Get all crimes recorded crimes in Gainesville with adequate data
     vector<Crime> crimes = getData("Crime_Responses.csv");
-    crimes[0].display();
-    cout << crimes.size() << endl;
+    //crimes[0].display();
+    //cout << crimes.size() << endl;
 
     // insert into min heap, create min heap object
+    MinHeap minheap1(crimes);
+    cout << "Min heap size: " << minheap1.minHeap.size() << endl;
 
     // insert into hash map, create hash map object
-    HashMap hashTable(150, crimes);
-    cout << hashTable.entries << endl;
+    HashMap hashTable(207, crimes);
+    cout << hashTable.resizeCount << endl;
 
     return 0;
 }

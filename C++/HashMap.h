@@ -43,6 +43,8 @@ public:
         cout << endl;
         cout << "Bucket data:" << endl;
         cout << bucketsUsed << "/" << this->buckets << " used." << endl;
+        float ratio = float(bucketsUsed) / this->buckets;
+        cout << "Ratio: " << ratio << endl;
         cout << this->buckets - bucketsUsed << " empty buckets." << endl;
         cout << endl;
     }

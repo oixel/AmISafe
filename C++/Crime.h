@@ -1,5 +1,5 @@
 // Citation for distance formula: https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/
-
+#pragma once
 #include <iostream>
 #include <cmath>
 using namespace std;
