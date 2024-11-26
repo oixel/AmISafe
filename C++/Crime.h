@@ -43,7 +43,7 @@ struct Crime
     }
 
     // Updates distance of crime from inputted coordinate
-    void setDistance(float lat2, float lon2)
+    void setPreciseDistance(float lat2, float lon2)
     {
         float lat1 = latitude; // origin is the location of user: reitz union for this example
         float lon1 = longitude;
@@ -72,12 +72,12 @@ struct Crime
     }
 
     // Gets distance of this crime from inputted coordinate
-    // void setDistance(float userLat, float userLong)
-    // {
-    //     double latMiles = (userLat - latitude) * 69;      // 1 degree latitude coordinate = 69 miles
-    //     double longMiles = (userLong - longitude) * 54.6; // 1 degree longitude coordinate = 54.6 miles
+    void setDistance(float userLat, float userLong)
+    {
+        double latMiles = (userLat - latitude) * 69;      // 1 degree latitude coordinate = 69 miles
+        double longMiles = (userLong - longitude) * 54.6; // 1 degree longitude coordinate = 54.6 miles
 
-    //     // Calculate distance using distance formula: sqrt((x2 - x1)^2 + (y2 - y1)^2)
-    //     distance = sqrt(pow(latMiles, 2) + pow(longMiles, 2));
-    // }
+        // Calculate distance using distance formula: sqrt((x2 - x1)^2 + (y2 - y1)^2)
+        distance = sqrt(pow(latMiles, 2) + pow(longMiles, 2));
+    }
 };
