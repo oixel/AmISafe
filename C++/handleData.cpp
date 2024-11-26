@@ -102,7 +102,7 @@ int main()
 
     // Create min heap and fill it with all crime data
 
-    const float RADIUS = 10.0;
+    const float RADIUS = 0.5;
     auto start = std::chrono::high_resolution_clock::now();
     MinHeap minheap1(crimes);
     cout << "Min heap size: " << minheap1.minHeap.size() << endl;
