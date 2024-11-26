@@ -38,36 +38,31 @@ struct Crime
         cout << "(" << latitude << ", " << longitude << ")" << endl;
 
         // Outputs distance if one has been calculated
-        if (distance)
+        if (distance != -1.0)
             cout << "Distance from user: " << distance << endl;
     }
 
-    // Updates distance of crime from inputted coordinate
+    // Gets precise distance considering the curvature of the Earth
     void setPreciseDistance(float lat2, float lon2)
     {
-        float lat1 = latitude; // origin is the location of user: reitz union for this example
+        float lat1 = latitude;
         float lon1 = longitude;
 
-        // calculate difference between origin & passed in coordinates
+        // Calculate difference between origin & passed in coordinates
+        double dLat = (lat2 - lat1) * M_PI / 180.0;
+        double dLon = (lon2 - lon1) * M_PI / 180.0;
 
-        double dLat = (lat2 - lat1) *
-                      M_PI / 180.0;
-        double dLon = (lon2 - lon1) *
-                      M_PI / 180.0;
-
-        // convert to radians
+        // Convert to radians
         lat1 = (lat1)*M_PI / 180.0;
         lat2 = (lat2)*M_PI / 180.0;
 
-        // apply formulae
-        double a = pow(sin(dLat / 2), 2) +
-                   pow(sin(dLon / 2), 2) *
-                       cos(lat1) * cos(lat2);
+        // Apply formula
+        double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
         double rad = 6371;
         double c = 2 * asin(sqrt(a));
         float km = rad * c;
 
-        // convert km into miles
+        // Convert km into miles
         distance = km * 0.621371;
     }
 
