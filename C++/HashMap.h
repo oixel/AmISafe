@@ -27,17 +27,15 @@ HashMap(int buckets){
 //hash function? or do we alr have the keys we just need to input it?
 // I feel like we might not even need a separate function, but it's good to have
 int hashFunction(Crime crime){
-    int hashCode = ceil(crime.distance); // should we floor or ceil the distance?
+    int hashCode = floor(crime.distance); // should we floor or ceil the distance?
     return hashCode;
 }
 
 //insert function 
 void insert(Crime crime){
-    int hashCode = ceil(crime.distance); // we may need a better hash function to reduce the time complexity
+    int hashCode = floor(crime.distance); // we may need a better hash function to reduce the time complexity
     table[hashCode].push_back(crime);
 }
-
-
 
 // do we delete or are we just iterating? 
 vector<Crime> getClosestCrimes(float userDefinedDistance){
