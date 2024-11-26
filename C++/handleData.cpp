@@ -99,11 +99,13 @@ int main()
     crimes[0].display();
     cout << crimes.size() << endl;
 
-    // insert into min heap, create min heap object
+    // Create min heap and fill it with all crime data
 
-    // insert into hash map, create hash map object
+    // Create hash map and fill it with all crime data
     HashMap hashTable(150, crimes);
     cout << hashTable.entries << endl;
+    const int RADIUS = 2;
+    cout << "Crimes in " << RADIUS << " mile radius: " << hashTable.getCrimesInRange(RADIUS).size() << endl;
 
     return 0;
 }
