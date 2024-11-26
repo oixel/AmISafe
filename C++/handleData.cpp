@@ -100,13 +100,15 @@ int main()
     // cout << crimes.size() << endl;
 
     // Create min heap and fill it with all crime data
+    const float RADIUS = 0.5;
     MinHeap minheap1(crimes);
     cout << "Min heap size: " << minheap1.minHeap.size() << endl;
+    cout << "Crimes in " << RADIUS << " mile radius: " << minheap1.getCrimesInRange(RADIUS).size() << endl;
+
 
     // Create hash map and fill it with all crime data
     HashMap hashTable(207, crimes);
     cout << hashTable.entries << endl;
-    const int RADIUS = 2;
     cout << "Crimes in " << RADIUS << " mile radius: " << hashTable.getCrimesInRange(RADIUS).size() << endl;
 
     return 0;

@@ -36,11 +36,16 @@ public:
 vector<Crime> MinHeap::getCrimesInRange(float radius)
 {
     vector<Crime> result;
-    Crime minElement = extractMin();
-    while (minElement.distance <= radius)
-    {
-        result.push_back(minElement);
-        minElement = extractMin();
+    // Crime minElement = extractMin();
+    // while (minElement.distance <= radius)
+    // {
+    //     result.push_back(minElement);
+    //     minElement = extractMin();
+    // }
+    for(auto crime : minHeap){
+        if(crime.distance <= radius){
+            result.push_back(crime);
+        }
     }
 
     return result;
@@ -63,7 +68,7 @@ void MinHeap::heapifyUp(int childIndex)
     int parentIndex = (childIndex - 1) / 2; // this already does floor
 
     // If child is less than parent, swap elements
-    if (childIndex > 0 && minHeap[parentIndex].distance < minHeap[childIndex].distance)
+    if (childIndex > 0 && minHeap[childIndex].distance < minHeap[parentIndex].distance)
     {
         swap(minHeap[childIndex], minHeap[parentIndex]);
 
@@ -97,12 +102,12 @@ void MinHeap::heapifyDown(int index)
     int smallestIndex = index;
 
     // Check if left or right child are smaller
-    if (left < minHeap.size() && minHeap[left].distance < minHeap[index].distance)
+    if (left < minHeap.size() && minHeap[left].distance < minHeap[smallestIndex].distance)
     {
         smallestIndex = left;
     }
 
-    if (right < minHeap.size() && minHeap[right].distance < minHeap[index].distance)
+    if (right < minHeap.size() && minHeap[right].distance < minHeap[smallestIndex].distance)
     {
         smallestIndex = right;
     }
