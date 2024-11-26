@@ -34,21 +34,33 @@ public:
 
         // For testing, stores the amount of buckets actually used
         int bucketsUsed = 0;
+        int maxIndex = 0;
+        int index = 0;
         for (auto row : table)
         {
-            if (row.size() != 0)
+            if (row.size() > table[maxIndex].size())
+                maxIndex = index;
+            if (!row.empty())
                 bucketsUsed++;
+
+            index++;
         }
 
-        cout << endl;
-        cout << "Bucket data:" << endl;
-        cout << bucketsUsed << "/" << this->buckets << " used." << endl;
-        cout << this->buckets - bucketsUsed << " empty buckets." << endl;
-        cout << endl;
+        // cout << endl;
+        // cout << "Bucket data:" << endl;
+        // cout << bucketsUsed << "/" << this->buckets << " used." << endl;
+        // cout << this->buckets - bucketsUsed << " empty buckets." << endl;
+        // cout << "Biggest bucket: " << maxIndex << " has " << table[maxIndex].size() << endl;
+        // cout << endl;
+
+        // for (Crime crime : table[maxIndex])
+        // {
+        //     cout << crime.latitude << ", " << crime.longitude << endl;
+        // }
     }
 
     // hash function? or do we alr have the keys we just need to input it?
-    unsigned int hashFunction(float distance)
+    int hash(float distance)
     {
         return (unsigned int)(distance * pow(10, resizeCount)) % buckets;
     }
@@ -80,7 +92,7 @@ public:
     //
     void insert(Crime crime)
     {
-        int hashCode = hashFunction(crime.distance);
+        int hashCode = hash(crime.distance);
 
         // cout << hashCode << " in buckets of " << buckets << endl;
         table[hashCode].push_back(crime);
@@ -93,8 +105,29 @@ public:
             resize();
     }
 
-    //
+    // Takes in distance from user to track crimes from
     vector<Crime> getCrimesInRange(float radius)
     {
+        // Stores all the crimes in given radius
+        vector<Crime> crimesInRange = {};
+
+        // Loops through all buckets in table
+        for (auto bucket : table)
+        {
+            // If bucket is empty, skip over bucket
+            if (bucket.empty())
+            {
+                continue;
+            }
+
+            // Otherwise, add values in bucket to output if in radius of current position
+            if (bucket[0].distance <= radius)
+            {
+                crimesInRange.insert(crimesInRange.end(), bucket.begin(), bucket.end());
+            }
+        }
+
+        // Return all the buckets in given range
+        return crimesInRange;
     }
 };
