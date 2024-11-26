@@ -1,4 +1,5 @@
-#include "Crime.h"
+#pragma once
+#include "HashMap.h"
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -55,6 +56,7 @@ vector<Crime> getData(string filepath)
         {
             Crime newCrime(data[incident], data[date], data[address], stof(data[longitude]), stof(data[latitude]));
             crimes.push_back(newCrime);
+
         }
         catch (exception _)
         {
@@ -67,6 +69,15 @@ vector<Crime> getData(string filepath)
 
 int main()
 {
+    // user input: get user's latitude and longitude?
+    // string userLatString;
+    // cin >> userLatString;
+    // float userLat = stof(userLatString);
+
+    // string userLongString;
+    // cin >> userLongString;
+    // float userLong = stof(userLongString);
+
     // Distance testing
     Crime crime("Test", "Date", "Address", 29.6465, -82.3480);
     crime.setPreciseDistance(29.69052, -82.33503);
@@ -81,6 +92,14 @@ int main()
     // Get all crimes recorded crimes in Gainesville with adequate data
     vector<Crime> crimes = getData("Crime_Responses.csv");
     crimes[0].display();
+    cout << crimes.size() << endl;
+
+    // insert into min heap, create min heap object
+
+    // insert into hash map, create hash map object
+    HashMap hashTable(100, crimes);
+    cout << hashTable.entries << endl;
+
 
     return 0;
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -12,8 +13,9 @@ class HashMap
 public:
 int buckets; 
 float loadFactor = 0.75; // 0.75?
-int entries;
+int entries = 0;
 int resizeCount = 0;
+//vector<Crime> crimes;
 
 
 // creates 2D vector to store the chaining 
@@ -22,10 +24,13 @@ int resizeCount = 0;
 vector<vector<Crime>> table; 
 
 // Constuctor (how are we getting the number of buckets?)
-HashMap(int buckets){
+HashMap(int buckets, vector<Crime> &crimes){
     this->buckets = buckets;
     table.resize(buckets);
-
+    // for(auto crime: crimes){
+    //     insert(crime);
+    // }
+    cout << "Constructor is called" << endl;
 }
 
 //hash function? or do we alr have the keys we just need to input it?
@@ -37,13 +42,17 @@ int hashFunction(float distance){
 // resize function
 void resize(){
     resizeCount++;
-    vector<vector<Crime>> tempTable;
-    for( : table)
-    int hashCode = hashFunction(crime.distance); // we may need a better hash function to reduce the time complexity
-    table[hashCode].push_back(crime);
-    entries++;
+    // resize the buckets: double the number of buckets
+    buckets *= 2;
+    vector<vector<Crime>> tempTable = table;
+    table.clear();
+    table.resize(buckets);
 
-
+    for(auto row : tempTable){
+        for(int j = 0; j < row.size(); j++){
+            insert(row[j]);
+        }
+    }
 }
 
 
