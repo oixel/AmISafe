@@ -26,10 +26,9 @@ public:
     {
         this->buckets = buckets;
         table.resize(buckets, {});
-        int i = 0;
+
         for (auto crime : crimes)
         {
-            i++;
             insert(crime);
         }
     }
@@ -80,7 +79,7 @@ public:
             resize();
     }
 
-    // do we delete or are we just iterating?
+    //
     vector<Crime> getCrimesInRange(float radius)
     {
     }
