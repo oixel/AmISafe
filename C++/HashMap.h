@@ -11,7 +11,10 @@ class HashMap
 {
 public:
 int buckets; 
-float loadFactor; // 0.75?
+float loadFactor = 0.75; // 0.75?
+int entries;
+int resizeCount = 0;
+
 
 // creates 2D vector to store the chaining 
 // Key: outer vector holds the distance 
@@ -22,15 +25,38 @@ vector<vector<Crime>> table;
 HashMap(int buckets){
     this->buckets = buckets;
     table.resize(buckets);
+
 }
 
 //hash function? or do we alr have the keys we just need to input it?
-// I feel like we might not even need a separate function, but it's good to have
+int hashFunction(float distance){
+    int hashCode = floor(pow(10, resizeCount) * distance);
+    return hashCode;
+}
+
+// resize function
+void resize(){
+    resizeCount++;
+    vector<vector<Crime>> tempTable;
+    for( : table)
+    int hashCode = hashFunction(crime.distance); // we may need a better hash function to reduce the time complexity
+    table[hashCode].push_back(crime);
+    entries++;
+
+
+}
+
 
 //insert function 
 void insert(Crime crime){
-    int hashCode = floor(crime.distance); // we may need a better hash function to reduce the time complexity
+    
+    int hashCode = hashFunction(crime.distance); // we may need a better hash function to reduce the time complexity
     table[hashCode].push_back(crime);
+    entries++;
+
+    if (entries/buckets >= loadFactor){
+        resize();
+    }
 }
 
 // do we delete or are we just iterating? 
