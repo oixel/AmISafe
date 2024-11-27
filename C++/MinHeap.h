@@ -19,7 +19,7 @@ public:
     void heapifyDown(int index);
 
     //
-    vector<Crime> getCrimesInRange(float distance);
+    vector<Crime> getCrimesInRange(float radius);
 
     // constructor
     MinHeap(vector<Crime> &crimes){
@@ -35,17 +35,19 @@ public:
 vector<Crime> MinHeap::getCrimesInRange(float radius)
 {
     vector<Crime> result;
-    // Crime minElement = extractMin();
-    // while (minElement.distance <= radius)
-    // {
-    //     result.push_back(minElement);
-    //     minElement = extractMin();
-    // }
-    for(auto crime : minHeap){
-        if(crime.distance <= radius){
-            result.push_back(crime);
-        }
+    Crime minElement = extractMin();
+    while (minElement.distance <= radius)
+    {
+        result.push_back(minElement);
+        minElement = extractMin();
     }
+    
+    // we went through all the crimes as a test to see, but I uncommented out the actual min heap extract min now!
+    // for(auto crime : minHeap){
+    //     if(crime.distance <= radius){
+    //         result.push_back(crime);
+    //     }
+    // }
 
     return result;
 }
