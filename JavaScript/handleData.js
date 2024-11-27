@@ -1,6 +1,7 @@
 // Import crime class from external JavaScript file
 import { Crime } from './Crime.js';
 import { HashTable } from './HashTable.js';
+import { MinHeap } from './MinHeap.js';
 
 // Stores radius limit to only allow values in Gainesville since dataset contains some crimes outside of Gainesville's
 const MAX_RANGE = 100;
@@ -79,7 +80,15 @@ async function main() {
     // Updates max value allowed in input box to be quantity of crimes
     indexInput.max = crimes.length;
 
-    var hashMap = new HashTable(207, crimes);
+    var hashtable = new HashTable(207, crimes);
+    console.log(hashtable.entries);
+    var crimesInRange = hashtable.getCrimesInRange(0.5);
+    console.log(crimesInRange.length);
+
+    var minHeap = new MinHeap(crimes);
+    console.log(minHeap.heap.length);
+    var crimesInRange = minHeap.getCrimesInRange(0.5);
+    console.log(crimesInRange.length);
 }
 
 main()
