@@ -58,12 +58,6 @@ export class DataHandler {
         console.log(`${this.crimes.length} crimes loaded!`);
     }
 
-    // Creates HashTable and Min Heap from parsed crime data
-    async createDataStructures() {
-        this.hashtable = new HashTable(276, this.crimes);
-        this.minHeap = new MinHeap(this.crimes);
-    }
-
     // Updates the distances of each crime based on new position
     async updateDistances(position) {
         await this.crimes.forEach(crime => {
@@ -72,17 +66,17 @@ export class DataHandler {
     }
 
     //
-    // DELETE BEFORE SUBMISSION. Debug script for testing that crimes are loading properly
-    // 
-    async output() {
-        await this.createDataStructures();
+    async getCrimesInRadius() {
+        this.hashtable = new HashTable(276, this.crimes);
 
-        console.log(this.hashtable.entries);
-        var crimesInRange = this.hashtable.getCrimesInRange(0.5);
-        console.log(crimesInRange.length);
+        return this.hashtable.getCrimesInRange(0.5);
 
-        console.log(this.minHeap.heap.length);
-        crimesInRange = this.minHeap.getCrimesInRange(0.5);
-        console.log(crimesInRange.length);
+        /*
+        TODO: Add toggle somewhere to toggle between hashtable and minheap
+        */
+        // this.minHeap = new MinHeap(this.crimes);
+        // console.log(this.minHeap.heap.length);
+        // crimesInRange = this.minHeap.getCrimesInRange(0.5);
+        // console.log(crimesInRange.length);
     }
 }

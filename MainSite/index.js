@@ -41,20 +41,20 @@ function setPositionMarker() {
 }
 
 //
-function getCrimes() {
+async function getCrimes() {
     // Updates marker to current location if not previously updated
     setPositionMarker();
 
     // Only updates crimes around position if position has changed;
-    if (position != prevPosition) {
+    let isNewPosition = (position[0] != prevPosition[0]) && position[1] != prevPosition[1];
+    if (isNewPosition) {
         dataHandler.updateDistances(position);
+
+        // Gets crime around current position and fills the map with markers
+        var crimes = await dataHandler.getCrimesInRadius();
+        map.setCrimeMarkers(crimes);
     }
 
     // Update prevPosition to be position that was just checked
     prevPosition = Array.from(position);
-
-    //
-    // DELETE BEFORE SUBMISSION. Outputs basic debug information into console for testing purposes.
-    //
-    dataHandler.output();
 }
