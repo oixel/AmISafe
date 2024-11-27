@@ -13,7 +13,7 @@ body {
     z-index: 0;
 }
 
-.website_name {
+.website-name {
     position: absolute;
     z-index: 1;
     width: 130px;
@@ -26,44 +26,36 @@ body {
     border-radius: 3px;
 }
 
-.website_name h1 {
+.website-name h1 {
     color: white;
     font-size: 24px;
     line-height: 0.15;
     user-select: none;
 }
 
-#update_button,
-#reset_view_button,
-#state_text {
+#controls {
     position: absolute;
     z-index: 1;
-    text-align: center;
-    border-radius: 2px;
-    padding: 1px;
-}
-
-#update_button,
-#reset_view_button {
-    width: 60px;
-    height: 50px;
     top: 0;
     right: 0;
     margin-right: 10px;
     margin-top: 10px;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: white;
+    height: 100px;
+    display: flex;
 }
 
-#update_button:hover,
-#reset_view_button:hover {
-    cursor: pointer;
-    background-color: #dbdbdb;
+/* Blocks arrows on number inputs for all browsers except firefox */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button,
+input[type=number] {
+    appearance: none;
+    margin: 0;
 }
 
-#reset_view_button {
-    margin-top: 70px;
-}
-
-#state_text {
+#state-text {
     top: 0;
     right: 0;
 
@@ -77,22 +69,22 @@ body {
     display: none;
 }
 
-.loading_text {
+.loading-text {
     background-color: black;
     width: 125px;
 }
 
-.default_error {
+.default-error {
     background-color: #cd4040;
     width: 170px;
 }
 
-.blocked_error {
+.blocked-error {
     background-color: #cd4040;
     width: 180px;
 }
 
-.support_error {
+.support-error {
     background-color: #cd4040;
     width: 335px;
 }
@@ -104,7 +96,7 @@ body {
     z-index: 1;
 }
 
-#cog_button {
+#cog-button {
     text-align: center;
     width: 35px;
     height: 35px;
@@ -124,8 +116,8 @@ body {
     border: none;
 }
 
-#crime_dropdown,
-#times_dropdown {
+#crime-dropdown,
+#times-dropdown {
     width: 150px;
     height: 50px;
     display: none;

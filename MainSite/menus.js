@@ -1,4 +1,4 @@
-let crime_dropdown = document.getElementById("crime_dropdown");
+let crime_dropdown = document.getElementById("crime-dropdown");
 
 let crimeVisible = false;
 function ToggleCrimeDropdown() {
@@ -6,7 +6,7 @@ function ToggleCrimeDropdown() {
     crime_dropdown.style.display = (crimeVisible) ? "flex" : "none";
 }
 
-let times_dropdown = document.getElementById("times_dropdown");
+let times_dropdown = document.getElementById("times-dropdown");
 let timesVisible = false;
 function ToggleTimesDropdown() {
     timesVisible = !timesVisible;
@@ -15,7 +15,7 @@ function ToggleTimesDropdown() {
 
 let settingsVisible = false;
 let dropdowns = document.getElementById("dropdowns");
-let cog_button = document.getElementById("cog_button");
+let cog_button = document.getElementById("cog-button");
 function ToggleDropdowns() {
     settingsVisible = !settingsVisible;
     cog_button.textContent = (settingsVisible) ? "✖️" : '⚙️';

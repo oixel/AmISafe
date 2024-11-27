@@ -17,40 +17,46 @@
 
 <body>
     <div id="map"></div>
-    <div class="website_name">
+    <div class="website-name">
         <h1>Am I Safe?</h1>
     </div>
     <div id="controls">
-        <button id="update_button" onclick="LocationHandler()">Set Location</button>
-        <button id="reset_view_button" onclick="UpdateView()">Reset View</button>
-        <p id="state_text">Loading location...</p>
+        <form>
+            <input type="number" id="latitude" step="any">
+            <input type="number" id="longitude" step="any">
+        </form>
+        <button id="get-location">Get Current Location</button>
+        <button id="set-marker">Set Marker</button>
+        <button id="get-crimes">Get Crimes Around Marker</button>
+        <button id="reset-view">Reset View</button>
+        <p id="state-text">Loading location...</p>
     </div>
 
     <div id="settings">
-        <button id="cog_button" onclick="ToggleDropdowns()">⚙️</button>
+        <button id="cog-button" onclick="ToggleDropdowns()">⚙️</button>
         <div id="dropdowns">
             <button onclick="ToggleCrimeDropdown()">Crime Types</button>
-            <div id="crime_dropdown">
-                <label class="checkbox">Theft<input type="checkbox" checked="checked" class="crime_checkbox"></label>
-                <label class="checkbox">Arson<input type="checkbox" checked="checked" class="crime_checkbox"></label>
-                <label class="checkbox">Assault<input type="checkbox" checked="checked" class="crime_checkbox"></label>
-                <label class="checkbox">Murder<input type="checkbox" checked="checked" class="crime_checkbox"></label>
-                <label class="checkbox">Abuse<input type="checkbox" checked="checked" class="crime_checkbox"></label>
-                <label class="checkbox">Battery<input type="checkbox" checked="checked" class="crime_checkbox"></label>
+            <div id="crime-dropdown">
+                <label class="checkbox">Theft<input type="checkbox" checked="checked" class="crime-checkbox"></label>
+                <label class="checkbox">Arson<input type="checkbox" checked="checked" class="crime-checkbox"></label>
+                <label class="checkbox">Assault<input type="checkbox" checked="checked" class="crime-checkbox"></label>
+                <label class="checkbox">Murder<input type="checkbox" checked="checked" class="crime-checkbox"></label>
+                <label class="checkbox">Abuse<input type="checkbox" checked="checked" class="crime-checkbox"></label>
+                <label class="checkbox">Battery<input type="checkbox" checked="checked" class="crime-checkbox"></label>
             </div>
             <button onclick="ToggleTimesDropdown()">Year</button>
-            <div id="times_dropdown">
-                <label class="checkbox">2019<input type="checkbox" checked="checked" class="time_checkbox"></label>
-                <label class="checkbox">2020<input type="checkbox" checked="checked" class="time_checkbox"></label>
-                <label class="checkbox">2021<input type="checkbox" checked="checked" class="time_checkbox"></label>
-                <label class="checkbox">2022<input type="checkbox" checked="checked" class="time_checkbox"></label>
-                <label class="checkbox">2023<input type="checkbox" checked="checked" class="time_checkbox"></label>
-                <label class="checkbox">2024<input type="checkbox" checked="checked" class="time_checkbox"></label>
+            <div id="times-dropdown">
+                <label class="checkbox">2019<input type="checkbox" checked="checked" class="time-checkbox"></label>
+                <label class="checkbox">2020<input type="checkbox" checked="checked" class="time-checkbox"></label>
+                <label class="checkbox">2021<input type="checkbox" checked="checked" class="time-checkbox"></label>
+                <label class="checkbox">2022<input type="checkbox" checked="checked" class="time-checkbox"></label>
+                <label class="checkbox">2023<input type="checkbox" checked="checked" class="time-checkbox"></label>
+                <label class="checkbox">2024<input type="checkbox" checked="checked" class="time-checkbox"></label>
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
-    <script src="menus.js"></script>
+    <script src="index.js" type="module"></script>
+    <script <script src="menus.js"></script>
 </body>
 
 </html>
