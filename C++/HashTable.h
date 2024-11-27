@@ -7,7 +7,7 @@ using namespace std;
 // if we need to visualize: there is a display hash function we can use to make sure everything is being added correctly
 // https://www.geeksforgeeks.org/hash-table-data-structure/
 
-class HashMap
+class HashTable
 {
 public:
     int buckets;
@@ -22,7 +22,7 @@ public:
     vector<vector<Crime>> table;
 
     // Constuctor (how are we getting the number of buckets?)
-    HashMap(int buckets, vector<Crime> &crimes)
+    HashTable(int buckets, vector<Crime> &crimes)
     {
         this->buckets = buckets;
         table.resize(buckets, {});

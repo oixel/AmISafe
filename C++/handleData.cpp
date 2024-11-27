@@ -1,4 +1,4 @@
-#include "HashMap.h"
+#include "HashTable.h"
 #include "MinHeap.h"
 #include <vector>
 #include <fstream>
@@ -75,13 +75,12 @@ vector<Crime> getData(string filepath, float userLat, float userLong)
 
 int main()
 {
-    //user input: get user's latitude and longitude?2
+    // user input: get user's latitude and longitude?2
     string userLatString;
     cout << "Enter Position Latitude: ";
     cin >> userLatString;
     float userLat = stof(userLatString);
 
-    
     string userLongString;
     cout << "Enter Position Latitude: ";
     cin >> userLongString;
@@ -120,10 +119,10 @@ int main()
     std::chrono::duration<double> elapsed = end - start;
     cout << "Elapsed time: " << elapsed.count() << " seconds" << std::endl;
 
-    // Create hash map and fill it with all crime data
-    cout << "\nHash Map:" << endl;
+    // Create hashtable and fill it with all crime data
+    cout << "\nHash Table:" << endl;
     auto start2 = std::chrono::high_resolution_clock::now();
-    HashMap hashTable(207, crimes);
+    HashTable hashTable(207, crimes);
     // cout << hashTable.entries << endl;
     cout << "Crimes in " << RADIUS << " mile radius: " << hashTable.getCrimesInRange(RADIUS).size() << endl;
     auto end2 = std::chrono::high_resolution_clock::now();
