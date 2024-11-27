@@ -52,10 +52,10 @@ inputForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     // 
-    var index = (indexInput.value == "") ? 0 : indexInput.value;
+    var index = (indexInput.value == "") ? 1 : indexInput.value;
 
     // 
-    crimeText.textContent = crimes[index].getData();
+    crimeText.innerHTML = crimes[index - 1].getData();
 });
 
 
@@ -66,7 +66,7 @@ async function main() {
 
     // 
     crimeText.textContent = `${crimes.length} crimes loaded!`;
-    indexInput.max = crimes.length - 1;
+    indexInput.max = crimes.length;
 }
 
 main()
