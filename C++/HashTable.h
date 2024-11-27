@@ -105,7 +105,7 @@ public:
             resize();
     }
 
-    // Takes in distance from user to track crimes from
+    // Returns all the crimes within radius of current position
     vector<Crime> getCrimesInRange(float radius)
     {
         // Stores all the crimes in given radius
@@ -130,7 +130,7 @@ public:
             }
         }
 
-        // Return all the buckets in given range
+        // Return all the crimes in given range
         return crimesInRange;
     }
 };
