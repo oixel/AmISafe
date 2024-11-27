@@ -1,0 +1,153 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
+#map {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.website_name {
+    position: absolute;
+    z-index: 1;
+    width: 130px;
+    height: 35px;
+    margin: 10px;
+    left: 0;
+    top: 0;
+    background-color: rgb(160, 32, 32);
+    text-align: center;
+    border-radius: 3px;
+}
+
+.website_name h1 {
+    color: white;
+    font-size: 24px;
+    line-height: 0.15;
+    user-select: none;
+}
+
+#update_button,
+#reset_view_button,
+#state_text {
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    border-radius: 2px;
+    padding: 1px;
+}
+
+#update_button,
+#reset_view_button {
+    width: 60px;
+    height: 50px;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#update_button:hover,
+#reset_view_button:hover {
+    cursor: pointer;
+    background-color: #dbdbdb;
+}
+
+#reset_view_button {
+    margin-top: 70px;
+}
+
+#state_text {
+    top: 0;
+    right: 0;
+
+    height: 20px;
+    padding: 5px;
+    margin-right: 75px;
+    margin-top: 20px;
+
+    color: white;
+
+    display: none;
+}
+
+.loading_text {
+    background-color: black;
+    width: 125px;
+}
+
+.default_error {
+    background-color: #cd4040;
+    width: 170px;
+}
+
+.blocked_error {
+    background-color: #cd4040;
+    width: 180px;
+}
+
+.support_error {
+    background-color: #cd4040;
+    width: 335px;
+}
+
+#settings {
+    position: absolute;
+    top: 100vh;
+    transform: translateY(-100%);
+    z-index: 1;
+}
+
+#cog_button {
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+}
+
+#dropdowns {
+    display: none;
+    background-color: rgb(179, 179, 179);
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+#dropdowns button {
+    width: 300px;
+    height: 50px;
+    border: none;
+}
+
+#crime_dropdown,
+#times_dropdown {
+    width: 150px;
+    height: 50px;
+    display: none;
+    flex-direction: column;
+    height: 50px;
+    flex-wrap: wrap;
+    gap: 5px;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+label {
+    /* Safari */
+    -webkit-user-select: none;
+    /* Firefox */
+    -moz-user-select: none;
+    /* IE10+/Edge */
+    -ms-user-select: none;
+    /* Standard */
+    user-select: none;
+}
+
+input {
+    float: left;
+}
