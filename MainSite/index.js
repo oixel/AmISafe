@@ -1,4 +1,5 @@
 import { Map } from './map.js'
+import { DataHandler } from './DataHandler.js';
 
 // Stores the two input elements for latitude and longitude
 const latitude = document.getElementById("latitude");
@@ -7,6 +8,7 @@ const longitude = document.getElementById("longitude");
 // Sets starting position on map to be the Reitz Union
 const START_POSITION = [29.646682, -82.347788]
 var position = START_POSITION;
+var prevPosition = [0, 0];
 
 // Create map object with center at current position
 var map = new Map(position);
@@ -21,6 +23,7 @@ document.getElementById("reset-view").addEventListener("click", function () { ma
 latitude.value = position[0];
 longitude.value = position[1];
 map.updatePosition(position);
+var dataHandler = new DataHandler(position);
 
 // Updates latitude and longitude values to be coordinates of device's current location
 function getCurrentLocation() {
@@ -41,4 +44,17 @@ function setPositionMarker() {
 function getCrimes() {
     // Updates marker to current location if not previously updated
     setPositionMarker();
+
+    // Only updates crimes around position if position has changed;
+    if (position != prevPosition) {
+        dataHandler.updateDistances(position);
+    }
+
+    // Update prevPosition to be position that was just checked
+    prevPosition = Array.from(position);
+
+    //
+    // DELETE BEFORE SUBMISSION. Outputs basic debug information into console for testing purposes.
+    //
+    dataHandler.output();
 }
