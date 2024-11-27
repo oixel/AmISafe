@@ -5,6 +5,9 @@ export class Crime {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+
+        // Initialize distance; gets set in setDistance()
+        this.distance = 0;
     }
 
     // Gets distance of this crime from inputted coordinate
@@ -21,6 +24,7 @@ export class Crime {
         return `<strong>Incident:</strong> ${this.incident}<br>
         <strong>Date:</strong> ${this.date}<br>
         <strong>Address:</strong> ${this.address}<br>
-        <strong>Coordinates:</strong> (${this.latitude}, ${this.longitude})`;
+        <strong>Coordinates:</strong> (${this.latitude}, ${this.longitude})
+        <strong>Distance:</strong> ${this.distance}`;
     }
 }

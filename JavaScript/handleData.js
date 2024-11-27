@@ -68,7 +68,6 @@ inputForm.addEventListener('submit', function (event) {
     crimeText.innerHTML = crimes[index - 1].getData();
 });
 
-
 async function main() {
     // Stores array of valid crimes
     crimes = await getCrimeData("../Crime_Responses.csv");
