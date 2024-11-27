@@ -24,7 +24,7 @@ export class Crime {
         return `<strong>Incident:</strong> ${this.incident}<br>
         <strong>Date:</strong> ${this.date}<br>
         <strong>Address:</strong> ${this.address}<br>
-        <strong>Coordinates:</strong> (${this.latitude}, ${this.longitude})
+        <strong>Coordinates:</strong> (${this.latitude}, ${this.longitude})<br>
         <strong>Distance:</strong> ${this.distance}`;
     }
 }
