@@ -1,5 +1,6 @@
 // Import crime class from external JavaScript file
 import { Crime } from './Crime.js';
+import { HashTable } from './HashTable.js';
 
 // Stores radius limit to only allow values in Gainesville since dataset contains some crimes outside of Gainesville's
 const MAX_RANGE = 100;
@@ -28,7 +29,7 @@ function parse(text) {
     var crimes = [];
 
     // Loops through all lines in CSV
-    lines.forEach((line) => {
+    lines.forEach(line => {
         // Stores values seperated by delimiter of "," into array called data
         var data = line.split(",");
 
@@ -77,6 +78,8 @@ async function main() {
 
     // Updates max value allowed in input box to be quantity of crimes
     indexInput.max = crimes.length;
+
+    var hashMap = new HashTable(207, crimes);
 }
 
 main()
