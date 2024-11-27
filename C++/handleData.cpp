@@ -32,7 +32,7 @@ vector<string> split(string str)
     return data;
 }
 
-vector<Crime> getData(string filepath)
+vector<Crime> getData(string filepath, float userLat, float userLong)
 {
     // Stores all crimes with valid data
     vector<Crime> crimes = {};
@@ -56,7 +56,7 @@ vector<Crime> getData(string filepath)
         try
         {
             Crime newCrime(data[incident], data[date], data[address], stof(data[latitude]), stof(data[longitude]));
-            newCrime.setDistance(29.646682, -82.347788);
+            newCrime.setDistance(userLat, userLong);
 
             // Limits crimes to Gainesville
             if (newCrime.distance > 100)
@@ -104,7 +104,7 @@ int main()
     // cout << endl;
 
     // Get all crimes recorded crimes in Gainesville with adequate data
-    vector<Crime> crimes = getData("../Crime_Responses.csv");
+    vector<Crime> crimes = getData("../Crime_Responses.csv", userLat, userLong);
     // crimes[0].display();
     // cout << crimes.size() << endl;
 
