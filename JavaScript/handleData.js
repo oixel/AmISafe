@@ -80,7 +80,7 @@ async function main() {
     // Updates max value allowed in input box to be quantity of crimes
     indexInput.max = crimes.length;
 
-    var hashtable = new HashTable(207, crimes);
+    var hashtable = new HashTable(276, crimes);
     console.log(hashtable.entries);
     var crimesInRange = hashtable.getCrimesInRange(0.5);
     console.log(crimesInRange.length);
