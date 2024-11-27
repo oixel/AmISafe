@@ -75,14 +75,22 @@ vector<Crime> getData(string filepath)
 
 int main()
 {
-    // user input: get user's latitude and longitude?
-    // string userLatString;
-    // cin >> userLatString;
-    // float userLat = stof(userLatString);
+    //user input: get user's latitude and longitude?2
+    string userLatString;
+    cout << "Enter Address Latitude: ";
+    cin >> userLatString;
+    float userLat = stof(userLatString);
 
-    // string userLongString;
-    // cin >> userLongString;
-    // float userLong = stof(userLongString);
+    
+    string userLongString;
+    cout << "Enter Address Latitude: ";
+    cin >> userLongString;
+    float userLong = stof(userLongString);
+
+    string userRadius;
+    cout << "Enter Radius Distance: ";
+    cin >> userRadius;
+    const float RADIUS = stof(userRadius);
 
     // Distance testing
     // Crime crime("Test", "Date", "Address", 29.6465, -82.3480);
@@ -100,13 +108,13 @@ int main()
     // crimes[0].display();
     // cout << crimes.size() << endl;
 
-    const float RADIUS = 0.5;
+    // const float RADIUS = 0.5;
 
     // Create min heap and fill it with all crime data
     cout << "Min Heap:" << endl;
     auto start = std::chrono::high_resolution_clock::now();
     MinHeap minheap1(crimes);
-    cout << "Min heap size: " << minheap1.minHeap.size() << endl;
+    // cout << "Min heap size: " << minheap1.minHeap.size() << endl;
     cout << "Crimes in " << RADIUS << " mile radius: " << minheap1.getCrimesInRange(RADIUS).size() << endl;
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
