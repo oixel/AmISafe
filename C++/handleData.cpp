@@ -77,13 +77,13 @@ int main()
 {
     //user input: get user's latitude and longitude?2
     string userLatString;
-    cout << "Enter Address Latitude: ";
+    cout << "Enter Position Latitude: ";
     cin >> userLatString;
     float userLat = stof(userLatString);
 
     
     string userLongString;
-    cout << "Enter Address Latitude: ";
+    cout << "Enter Position Latitude: ";
     cin >> userLongString;
     float userLong = stof(userLongString);
 
