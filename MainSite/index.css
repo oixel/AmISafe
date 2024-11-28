@@ -11,6 +11,10 @@ p {
     margin: 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* Makes map fill screen */
 #map {
     margin: 0;
@@ -78,7 +82,8 @@ input[type=number] {
 }
 
 #settings-button,
-#settings {
+#settings,
+#filters {
     position: absolute;
     top: 0;
     right: 0;
@@ -105,14 +110,18 @@ input[type=number] {
     display: none;
     flex-direction: column;
     justify-content: space-evenly;
-
-    width: 200px;
     height: 150px;
 
     padding-bottom: 10px;
-    padding-left: 10px;
 
     background-color: white;
+}
+
+/* Adds width to the settings menus */
+#settings,
+#filters {
+    width: 200px;
+    padding-left: 10px;
 }
 
 /* Add small gap between "Data Structure:" header and selection box */
@@ -136,4 +145,20 @@ input[type=number] {
 #toggles button {
     width: 45px;
     height: 45px;
+    border-radius: 5px;
+}
+
+/* Highlights button when it is turned on */
+.toggled-on {
+    background-color: #a9a9a9;
+}
+
+#filters {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 180px;
 }
