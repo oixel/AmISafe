@@ -27,6 +27,9 @@ var dataHandler = new DataHandler(position);
 
 // Allows position to be set by clicking around on the map
 map.map.on('click', function (e) {
+    // Only allows moving pointer with mouse if check box is currently checked
+    if (!document.getElementById("use-mouse").checked) return;
+
     // Sets current position to position clicked on the map
     position = [e.latlng.lat, e.latlng.lng];
 
