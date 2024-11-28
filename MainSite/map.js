@@ -46,7 +46,6 @@ export class Map {
 
         // Create new marker at position and move camera to it
         this.posMarker = L.marker(position).addTo(this.map);
-        this.resetView(position);
     }
 
     // Removes all crime markers currently on the map
