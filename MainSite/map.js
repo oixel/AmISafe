@@ -63,8 +63,8 @@ export class Map {
             marker.date = crime.date;
             marker.address = crime.address;
 
-            // Binds crime type to pop up so whenever the marker is clicked it show the crime name
-            marker.bindPopup(`<b>Incident:</b> ${crime.incident}<br><b>Date:</b> ${crime.date}<br><b>Address:</b> ${crime.address}`);
+            // Binds data to popup and hover tool tip to make crime markers interactable
+            marker.bindPopup(`<b>Incident:</b> ${crime.incident}<br><b>Date:</b> ${crime.date}<br><b>Time: </b>${crime.time}<br><b>Address:</b> ${crime.address}`);
             marker.bindTooltip(`${crime.incident} - ${crime.date}`);
 
             // Add marker with data onto map

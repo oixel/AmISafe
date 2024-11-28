@@ -1,7 +1,8 @@
 export class Crime {
-    constructor(incident, date, address, latitude, longitude) {
+    constructor(incident, occurence, address, latitude, longitude) {
         this.incident = incident;
-        this.date = date;
+        this.date = occurence.slice(0, 11);  // Get date value from occurence data
+        this.time = occurence.slice(12);     // Get time value from occurence data
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
