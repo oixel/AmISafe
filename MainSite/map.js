@@ -15,7 +15,7 @@ export class Map {
 
         // Set map to use OpenStreetMap
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            minZoom: 13,  // Limits how far user can zoom out
+            minZoom: 11,  // Limits how far user can zoom out
             maxZoom: 19,  // Limits how far user can zoom in
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(this.map);
