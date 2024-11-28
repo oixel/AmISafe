@@ -58,13 +58,13 @@ export class Map {
             let position = [crime.latitude, crime.longitude];
             var marker = L.circleMarker(position, { color: '#d12e36', radius: 4, fillOpacity: 1 });
 
-            // Creates new marker at crime's position and sets custom crime data
+            // Stores custom crime data in marker
             marker.incident = crime.incident;
             marker.date = crime.date;
             marker.address = crime.address;
 
-            // Binds data to popup and hover tool tip to make crime markers interactable
-            marker.bindPopup(`<b>Incident:</b> ${crime.incident}<br><b>Date:</b> ${crime.date}<br><b>Time: </b>${crime.time}<br><b>Address:</b> ${crime.address}`);
+            // Binds data to popup and hover tooltip to make crime markers interactable
+            marker.bindPopup(crime.getData());
             marker.bindTooltip(`${crime.incident} - ${crime.date}`);
 
             // Add marker with data onto map

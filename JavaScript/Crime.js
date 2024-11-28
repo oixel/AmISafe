@@ -26,10 +26,9 @@ export class Crime {
 
     // Returns formatted string of this crime's data
     getData() {
-        return `<strong>Incident:</strong> ${this.incident}<br>
-        <strong>Date:</strong> ${this.date}<br>
-        <strong>Address:</strong> ${this.address}<br>
-        <strong>Coordinates:</strong> (${this.latitude}, ${this.longitude})<br>
-        <strong>Distance:</strong> ${this.distance}`;
+        return `<b>Incident:</b> ${this.incident}<br>
+        <b>Date:</b> ${this.date}<br>
+        <b>Time: </b>${this.time}<br>
+        <b>Address:</b> ${this.address}`;
     }
 }
