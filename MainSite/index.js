@@ -10,6 +10,9 @@ const START_POSITION = [29.646682, -82.347788]
 var position = START_POSITION;
 var prevPosition = [0, 0];
 
+// 
+var prevUsedMinHeap = false;
+
 // Create map object with center at current position
 var map = new Map(position);
 
@@ -56,22 +59,31 @@ function setPositionMarker() {
     map.updatePosition(position);
 }
 
-//
+// Fills map with crime markers around user
 async function getCrimes() {
     // Updates marker to current location if not previously updated
     setPositionMarker();
 
-    // Only updates crimes around position if position has changed;
+    // Determines whether MinHeap is selected in settings
+    let useMinHeap = document.getElementById("use-minheap").checked;
+
+    // Determines whether the current position is different than last time the button was pressed
     let isNewPosition = (position[0] != prevPosition[0]) && position[1] != prevPosition[1];
-    if (isNewPosition) {
+
+    // Only updates crimes around position if position or data structure has changed
+    if (isNewPosition || useMinHeap != prevUsedMinHeap) {
         dataHandler.updateDistances(position);
 
+        // Hard coded temporarily
+        let radius = 0.5;
+
         // Gets crime around current position and fills the map with markers
-        var crimes = await dataHandler.getCrimesInRadius();
-        map.clearCrimeMarkers();
+        var crimes = await dataHandler.getCrimesInRadius(radius, useMinHeap);
+        map.clearCrimeMarkers();  // Wipe current markers before adding new markers
         map.setCrimeMarkers(crimes);
     }
 
-    // Update prevPosition to be position that was just checked
+    // Updates the previously seen values to what was inputted this time
     prevPosition = Array.from(position);
+    prevUsedMinHeap = useMinHeap;
 }

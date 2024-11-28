@@ -65,18 +65,10 @@ export class DataHandler {
         });
     }
 
-    //
-    async getCrimesInRadius() {
-        this.hashtable = new HashTable(276, this.crimes);
-
-        return this.hashtable.getCrimesInRange(0.5);
-
-        /*
-        TODO: Add toggle somewhere to toggle between hashtable and minheap
-        */
-        // this.minHeap = new MinHeap(this.crimes);
-        // console.log(this.minHeap.heap.length);
-        // crimesInRange = this.minHeap.getCrimesInRange(0.5);
-        // console.log(crimesInRange.length);
+    // Returns values in given radius from position using data structure selected in settings
+    async getCrimesInRadius(radius, useMinHeap) {
+        let structure = (useMinHeap) ? new MinHeap(this.crimes) : new HashTable(276, this.crimes);
+        console.log(`Used ${structure.constructor.name} data structure!`)
+        return structure.getCrimesInRange(radius);
     }
 }
