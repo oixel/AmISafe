@@ -44,7 +44,7 @@ export class DataHandler {
                 crime.setDistance(position[0], position[1]);
 
                 // set crime categorization
-                crime.setCrimeType(data[1]);
+                //crime.setCrimeType(data[1]);
 
                 // Only appends crime if it is the range of Gainesville
                 if (crime.distance <= MAX_RANGE) crimes.push(crime);

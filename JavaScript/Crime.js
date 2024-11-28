@@ -27,43 +27,43 @@ export class Crime {
         this.distance = Math.sqrt(latMiles ** 2 + longMiles ** 2);
     }
     
-    setCrimeType(incident){
-        // other categories to consider: ... feel free to look at the EXCEL file (sorted by crime) and add categories
-        if(data[1].includes("Assault")){
-            this.incidentType = "Assault";
-        }
-        if(data[1].includes("Arson")){
-            this.incidentType = "Arson";
-        }
-        if(data[1].includes("Arrest")){
-            this.incidentType = "Arrest";
-        }
+    // setCrimeType(incident){
+    //     // other categories to consider: ... feel free to look at the EXCEL file (sorted by crime) and add categories
+    //     if(data[1].includes("Assault")){
+    //         this.incidentType = "Assault";
+    //     }
+    //     if(data[1].includes("Arson")){
+    //         this.incidentType = "Arson";
+    //     }
+    //     if(data[1].includes("Arrest")){
+    //         this.incidentType = "Arrest";
+    //     }
 
-        if(data[1].includes("Battery")){
-            this.incidentType = "Battery";
-        }
+    //     if(data[1].includes("Battery")){
+    //         this.incidentType = "Battery";
+    //     }
 
-        if(data[1].includes("Burglary")){
-            this.incidentType = "Burglary";
-        }
+    //     if(data[1].includes("Burglary")){
+    //         this.incidentType = "Burglary";
+    //     }
 
-        if(data[1].includes("Death")){
-            this.incidentType = "Death Investigation";
-        }
+    //     if(data[1].includes("Death")){
+    //         this.incidentType = "Death Investigation";
+    //     }
 
-        if(data[1].includes("Drug")){
-            this.incidentType = "Drug Violation";
-        }
+    //     if(data[1].includes("Drug")){
+    //         this.incidentType = "Drug Violation";
+    //     }
 
-        if(data[1].includes("Stolen Vehicle")){
-            this.incidentType = "Stolen Vehicle";
-        }
+    //     if(data[1].includes("Stolen Vehicle")){
+    //         this.incidentType = "Stolen Vehicle";
+    //     }
 
-         if(data[1].includes("Theft")){
-            this.incidentType = "Theft";
-        }
+    //      if(data[1].includes("Theft")){
+    //         this.incidentType = "Theft";
+    //     }
 
-    }
+    // }
 
 
     // Returns formatted string of this crime's data
