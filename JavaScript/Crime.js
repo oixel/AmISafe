@@ -3,7 +3,11 @@ export class Crime {
         this.incident = incident;
         this.date = occurence.slice(0, 11);  // Get date value from occurence data
         this.time = occurence.slice(12);     // Get time value from occurence data
+
+        // Removes " BLK " prefix added to random addresses
+        address = address.replace(" BLK ", " ");
         this.address = address;
+
         this.latitude = latitude;
         this.longitude = longitude;
 
