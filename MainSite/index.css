@@ -1,3 +1,4 @@
+/* Basic tweaks to entire site. Gets rid of scroll bar */
 html,
 body {
     margin: 0;
@@ -5,6 +6,7 @@ body {
     overflow: hidden
 }
 
+/* Makes map fill screen */
 #map {
     margin: 0;
     padding: 0;
@@ -37,10 +39,9 @@ body {
 #controls {
     position: absolute;
     z-index: 1;
-    top: 0;
     right: 0;
-    margin-right: 10px;
-    margin-top: 10px;
+    bottom: 0;
+    margin: 10px;
     border-radius: 5px;
     flex-direction: column;
     background-color: white;
@@ -51,6 +52,7 @@ body {
     gap: 5px;
 }
 
+/* Tweaks button sizes in control box to be uniform */
 #controls button {
     width: 180px;
 }
@@ -71,93 +73,4 @@ input[type=number] {
 /* Puts small gap between latitude and longitude boxes */
 #latitude {
     margin-right: 5px;
-}
-
-#state-text {
-    top: 0;
-    right: 0;
-
-    height: 20px;
-    padding: 5px;
-    margin-right: 75px;
-    margin-top: 20px;
-
-    color: white;
-
-    display: none;
-}
-
-.loading-text {
-    background-color: black;
-    width: 125px;
-}
-
-.default-error {
-    background-color: #cd4040;
-    width: 170px;
-}
-
-.blocked-error {
-    background-color: #cd4040;
-    width: 180px;
-}
-
-.support-error {
-    background-color: #cd4040;
-    width: 335px;
-}
-
-#settings {
-    position: absolute;
-    top: 100vh;
-    transform: translateY(-100%);
-    z-index: 1;
-}
-
-#cog-button {
-    text-align: center;
-    width: 35px;
-    height: 35px;
-    margin: 10px;
-}
-
-#dropdowns {
-    display: none;
-    background-color: rgb(179, 179, 179);
-    flex-direction: column;
-    margin-left: 5px;
-}
-
-#dropdowns button {
-    width: 300px;
-    height: 50px;
-    border: none;
-}
-
-#crime-dropdown,
-#times-dropdown {
-    width: 150px;
-    height: 50px;
-    display: none;
-    flex-direction: column;
-    height: 50px;
-    flex-wrap: wrap;
-    gap: 5px;
-    column-gap: 10px;
-    justify-content: center;
-}
-
-label {
-    /* Safari */
-    -webkit-user-select: none;
-    /* Firefox */
-    -moz-user-select: none;
-    /* IE10+/Edge */
-    -ms-user-select: none;
-    /* Standard */
-    user-select: none;
-}
-
-input {
-    float: left;
 }

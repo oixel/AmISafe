@@ -9,7 +9,8 @@ export class Map {
             center: position,
             zoom: 13,
             zoomControl: false,
-            preferCanvas: true
+            preferCanvas: true,
+            attributionControl: false
         });
 
         // Set map to use OpenStreetMap
@@ -21,7 +22,7 @@ export class Map {
 
         // Initialize zoom tools to bottom right
         L.control.zoom({
-            position: 'bottomright'
+            position: 'bottomleft'
         }).addTo(this.map);
     }
 
