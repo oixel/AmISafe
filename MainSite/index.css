@@ -24,12 +24,19 @@ p {
     z-index: 1;
     width: 130px;
     height: 35px;
-    margin: 10px;
-    left: 0;
+    margin: 0px;
+    left: -20px;
     top: 0;
-    background-color: rgb(160, 32, 32);
+   /* background-color: rgb(160, 32, 32);
     text-align: center;
-    border-radius: 3px;
+    border-radius: 3px; */
+}
+.website-name img{
+    
+    max-width: 250px; /* Adjust size */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center horizontally */
 }
 
 .website-name h1 {
