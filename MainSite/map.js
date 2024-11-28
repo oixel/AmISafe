@@ -67,6 +67,16 @@ export class Map {
             marker.bindPopup(crime.getData());
             marker.bindTooltip(`${crime.incident} - ${crime.date}`);
 
+            // Hides hover tooltip whenever popup gets opened
+            marker.on('click', function () {
+                this.closeTooltip();
+            })
+
+            // Keeps hover tooltip hidden while popup is currently open
+            marker.on('mouseover', function () {
+                if (this.isPopupOpen()) this.closeTooltip();
+            });
+
             // Add marker with data onto map
             marker.addTo(this.map);
 
