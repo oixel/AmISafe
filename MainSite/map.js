@@ -1,13 +1,3 @@
-// Imports red version of default leaflet icon from github
-var redMarker = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-});
-
 export class Map {
     constructor(position) {
         this.posMarker = null;
@@ -18,7 +8,8 @@ export class Map {
         this.map = L.map('map', {
             center: position,
             zoom: 13,
-            zoomControl: false
+            zoomControl: false,
+            preferCanvas: true
         });
 
         // Set map to use OpenStreetMap
@@ -61,22 +52,12 @@ export class Map {
 
     // Fill map with all markers for all crimes in passed-in vector
     setCrimeMarkers(crimes) {
-        var markers = L.markerClusterGroup({
-            showCoverageOnHover: false,
-            zoomToBoundsOnClick: false,
-            spiderLegPolylineOptions: { weight: 0 },
-            maxClusterRadius: 5
-        });
-
-        markers.addTo(this.map);
-        this.map.addLayer(markers);
-
         crimes.forEach(crime => {
             // Store crime's position in vector format
-            let newPosition = [crime.latitude, crime.longitude];
+            let position = [crime.latitude, crime.longitude];
+            var marker = L.circleMarker(position, { color: '#cc1d1d', radius: 5, fillOpacity: 0.5 });
 
             // Creates new marker at crime's position and sets custom crime data
-            let marker = L.marker(newPosition, { icon: redMarker });
             marker.incident = crime.incident;
             marker.date = crime.date;
             marker.address = crime.address;
@@ -84,16 +65,11 @@ export class Map {
             // Binds crime type to pop up so whenever the marker is clicked it show the crime name
             marker.bindPopup(`${crime.incident} commited on ${crime.date} at ${crime.address}.`);
 
-            //
-            markers.addLayer(marker);
-
-            // // Add marker with data onto map
-            // marker.addTo(this.map);
+            // Add marker with data onto map
+            marker.addTo(this.map);
 
             // Append marker to list of all crime markers
             this.crimeMarkers.push(marker);
         });
-
-        this.map.addLayer(markers);
     }
 }
