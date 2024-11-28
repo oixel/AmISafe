@@ -10,8 +10,12 @@ const START_POSITION = [29.646682, -82.347788]
 var position = START_POSITION;
 var prevPosition = [0, 0];
 
-// 
+// Tracks whether desired data structure selection is different
 var prevUsedMinHeap = false;
+
+// Tracks radius value inputted in settings
+const radiusSlider = document.getElementById("radius-slider");
+var prevRadius = 0;
 
 // Create map object with center at current position
 var map = new Map(position);
@@ -64,18 +68,18 @@ async function getCrimes() {
     // Updates marker to current location if not previously updated
     setPositionMarker();
 
-    // Determines whether MinHeap is selected in settings
-    let useMinHeap = document.getElementById("use-minheap").checked;
-
     // Determines whether the current position is different than last time the button was pressed
     let isNewPosition = (position[0] != prevPosition[0]) && position[1] != prevPosition[1];
 
-    // Only updates crimes around position if position or data structure has changed
-    if (isNewPosition || useMinHeap != prevUsedMinHeap) {
-        dataHandler.updateDistances(position);
+    // Determines whether MinHeap is selected in settings
+    let useMinHeap = document.getElementById("use-minheap").checked;
 
-        // Hard coded temporarily
-        let radius = 0.5;
+    // Grabs value of radius slider in settings
+    let radius = radiusSlider.value;
+
+    // Only updates crimes around position if position, data structure, or radius has changed
+    if (isNewPosition || useMinHeap != prevUsedMinHeap || radius != prevRadius) {
+        dataHandler.updateDistances(position);
 
         // Gets crime around current position and fills the map with markers
         var crimes = await dataHandler.getCrimesInRadius(radius, useMinHeap);
@@ -83,7 +87,8 @@ async function getCrimes() {
         map.setCrimeMarkers(crimes);
     }
 
-    // Updates the previously seen values to what was inputted this time
+    // Updates the previously seen values to current value
     prevPosition = Array.from(position);
     prevUsedMinHeap = useMinHeap;
+    prevRadius = radius;
 }

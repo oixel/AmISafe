@@ -93,3 +93,12 @@ input[type=number] {
     padding: 5px;
     border-radius: 5px;
 }
+
+/* Add margin to all setting menu items */
+#settings div {
+    margin-bottom: 5px;
+}
+
+#radius-box {
+    display: flex;
+}
