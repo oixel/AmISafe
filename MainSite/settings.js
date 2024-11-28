@@ -5,12 +5,12 @@ var radiusSlider = document.getElementById("radius-slider");
 
 // Add toggling to settings menu by clicking settings button
 settingsButton.addEventListener("click", function (e) {
-    // Determines whether settings menu is currently visible by checking its display state (block is styling default--meaning visible)
-    let isOpen = settings.style.display == "block";
+    // Determines whether settings menu is currently visible by checking its display state
+    let isOpen = settings.style.display == "flex";
 
     // If settings are not open, make settings visible and set button icon to X
     if (!isOpen) {
-        settings.style.display = "block";
+        settings.style.display = "flex";
         settingsButton.textContent = "✖️";
     }
     else {  // Otherwise close settings menu and set button icon back to cog

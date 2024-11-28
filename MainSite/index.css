@@ -36,18 +36,22 @@ p {
 
 /* Customizes control box in the top right */
 #controls {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 10px;
-    border-radius: 5px;
-    flex-direction: column;
-    background-color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5px;
     gap: 5px;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+
+    margin: 10px;
+
+    border-radius: 5px;
+
+    background-color: white;
 }
 
 /* Tweaks button sizes in control box to be uniform */
@@ -81,24 +85,34 @@ input[type=number] {
 
     margin: 10px;
     padding: 5px;
+
     border-radius: 5px;
 }
 
 #settings-button {
+    z-index: 2;
+
     width: 35px;
     height: 35px;
     margin: 10px;
 
-    z-index: 2;
     border: none;
+
     background-color: white;
 }
 
 #settings {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+
     width: 200px;
     height: 150px;
+
+    padding-bottom: 10px;
+    padding-left: 10px;
+
     background-color: white;
-    display: none;
 }
 
 /* Add small gap between "Data Structure:" header and selection box */
@@ -106,12 +120,20 @@ input[type=number] {
     margin-bottom: 3px;
 }
 
-/* Add gap between setting items */
-#data-structure {
-    margin-bottom: 5px;
-}
-
 /* Aligns radius value text next to slider */
 #radius-box {
     display: flex;
+}
+
+#toggles {
+    display: flex;
+    gap: 25px;
+
+    /* Centers buttons in settings box */
+    padding-left: 5px;
+}
+
+#toggles button {
+    width: 45px;
+    height: 45px;
 }
