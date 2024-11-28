@@ -61,12 +61,22 @@ export class Map {
 
     // Fill map with all markers for all crimes in passed-in vector
     setCrimeMarkers(crimes) {
+        var markers = L.markerClusterGroup({
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: false,
+            spiderLegPolylineOptions: { weight: 0 },
+            maxClusterRadius: 5
+        });
+
+        markers.addTo(this.map);
+        this.map.addLayer(markers);
+
         crimes.forEach(crime => {
             // Store crime's position in vector format
             let newPosition = [crime.latitude, crime.longitude];
 
             // Creates new marker at crime's position and sets custom crime data
-            let marker = new L.marker(newPosition, { icon: redMarker });
+            let marker = L.marker(newPosition, { icon: redMarker });
             marker.incident = crime.incident;
             marker.date = crime.date;
             marker.address = crime.address;
@@ -74,11 +84,16 @@ export class Map {
             // Binds crime type to pop up so whenever the marker is clicked it show the crime name
             marker.bindPopup(`${crime.incident} commited on ${crime.date} at ${crime.address}.`);
 
-            // Add marker with data onto map
-            marker.addTo(this.map);
+            //
+            markers.addLayer(marker);
+
+            // // Add marker with data onto map
+            // marker.addTo(this.map);
 
             // Append marker to list of all crime markers
             this.crimeMarkers.push(marker);
         });
+
+        this.map.addLayer(markers);
     }
 }

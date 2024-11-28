@@ -65,6 +65,7 @@ async function getCrimes() {
 
         // Gets crime around current position and fills the map with markers
         var crimes = await dataHandler.getCrimesInRadius();
+        map.clearCrimeMarkers();
         map.setCrimeMarkers(crimes);
     }
 
