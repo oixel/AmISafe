@@ -20,30 +20,18 @@ p {
     z-index: 0;
 }
 
-.website-name {
+#logo {
     position: absolute;
-    width: 130px;
-    height: 35px;
-    margin: 0px;
-    left: -20px;
     top: 0;
-   /* background-color: rgb(160, 32, 32);
-    text-align: center;
-    border-radius: 3px; */
-}
-.website-name img{
-    
-    max-width: 250px; /* Adjust size */
-    height: auto; /* Maintain aspect ratio */
-    display: block;
-    margin: 0 auto; /* Center horizontally */
-}
+    left: 0;
 
-.website-name h1 {
-    color: white;
-    font-size: 24px;
-    line-height: 0.15;
-    user-select: none;
+    width: 150px;
+    height: auto;
+
+    margin-left: -10px;
+    margin-top: 5px;
+
+    pointer-events: none;
 }
 
 /* Customizes control box in the top right */
