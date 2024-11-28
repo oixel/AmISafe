@@ -25,6 +25,19 @@ longitude.value = position[1];
 map.updatePosition(position);
 var dataHandler = new DataHandler(position);
 
+// Allows position to be set by clicking around on the map
+map.map.on('click', function (e) {
+    // Sets current position to position clicked on the map
+    position = [e.latlng.lat, e.latlng.lng];
+
+    // Updates latitude and longitude input boxes to show new position
+    latitude.value = position[0];
+    longitude.value = position[1];
+
+    // Update marker position on the map
+    map.updatePosition(position);
+});
+
 // Updates latitude and longitude values to be coordinates of device's current location
 function getCurrentLocation() {
     // Prompts user for location permission if not previously given
