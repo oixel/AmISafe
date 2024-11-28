@@ -10,8 +10,9 @@ const START_POSITION = [29.646682, -82.347788]
 var position = START_POSITION;
 var prevPosition = [0, 0];
 
-// Tracks whether desired data structure selection is different
-var prevUsedMinHeap = false;
+// Tracks what data structure was used previous time crimes were generated
+var dsSelector = document.getElementById("ds-selector");
+var prevDataStructure = "";
 
 // Tracks radius value inputted in settings
 const radiusSlider = document.getElementById("radius-slider");
@@ -71,24 +72,24 @@ async function getCrimes() {
     // Determines whether the current position is different than last time the button was pressed
     let isNewPosition = (position[0] != prevPosition[0]) && position[1] != prevPosition[1];
 
-    // Determines whether MinHeap is selected in settings
-    let useMinHeap = document.getElementById("use-minheap").checked;
+    // Grab current value in data selector
+    let dataStructure = dsSelector.value;
 
     // Grabs value of radius slider in settings
     let radius = radiusSlider.value;
 
     // Only updates crimes around position if position, data structure, or radius has changed
-    if (isNewPosition || useMinHeap != prevUsedMinHeap || radius != prevRadius) {
+    if (isNewPosition || dataStructure != prevDataStructure || radius != prevRadius) {
         dataHandler.updateDistances(position);
 
         // Gets crime around current position and fills the map with markers
-        var crimes = await dataHandler.getCrimesInRadius(radius, useMinHeap);
+        var crimes = await dataHandler.getCrimesInRadius(radius, dataStructure);
         map.clearCrimeMarkers();  // Wipe current markers before adding new markers
         map.setCrimeMarkers(crimes);
     }
 
     // Updates the previously seen values to current value
     prevPosition = Array.from(position);
-    prevUsedMinHeap = useMinHeap;
+    prevDataStructure = dataStructure;
     prevRadius = radius;
 }

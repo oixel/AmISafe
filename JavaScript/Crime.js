@@ -1,8 +1,13 @@
 export class Crime {
-    constructor(incident, date, address, latitude, longitude) {
+    constructor(incident, occurence, address, latitude, longitude) {
         this.incident = incident;
-        this.date = date;
+        this.date = occurence.slice(0, 11);  // Get date value from occurence data
+        this.time = occurence.slice(12);     // Get time value from occurence data
+
+        // Removes " BLK " prefix added to random addresses
+        address = address.replace(" BLK ", " ");
         this.address = address;
+
         this.latitude = latitude;
         this.longitude = longitude;
 
@@ -21,10 +26,9 @@ export class Crime {
 
     // Returns formatted string of this crime's data
     getData() {
-        return `<strong>Incident:</strong> ${this.incident}<br>
-        <strong>Date:</strong> ${this.date}<br>
-        <strong>Address:</strong> ${this.address}<br>
-        <strong>Coordinates:</strong> (${this.latitude}, ${this.longitude})<br>
-        <strong>Distance:</strong> ${this.distance}`;
+        return `<b>Incident:</b> ${this.incident}<br>
+        <b>Date:</b> ${this.date}<br>
+        <b>Time: </b>${this.time}<br>
+        <b>Address:</b> ${this.address}`;
     }
 }

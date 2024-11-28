@@ -39,17 +39,19 @@
         </form>
     </div>
 
+    <button id="settings-button">⚙️</button>
+
     <div id="settings">
-        <div>
+        <div id="data-structure">
             <p><strong>Data Structure:</strong><br></p>
-            <form id="data-structure">
-                <label for="use-minheap">Min Heap</label>
-                <input type="checkbox" id="use-minheap" checked>
-                <label for="use-hashtable">HashTable</label>
-                <input type="checkbox" id="use-hashtable">
+            <form>
+                <select id="ds-selector">
+                    <option value="minheap">Min Heap</option>
+                    <option value="hashtable">Hash Table</option>
+                </select>
             </form>
         </div>
-        <div>
+        <div id="radius">
             <p><strong>Radius:</strong><br></p>
             <div id="radius-box">
                 <input type="range" min="0.1" max="2.5" value="0.5" step="0.1" class="slider" id="radius-slider">

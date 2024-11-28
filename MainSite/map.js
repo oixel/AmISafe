@@ -15,7 +15,7 @@ export class Map {
 
         // Set map to use OpenStreetMap
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            minZoom: 13,  // Limits how far user can zoom out
+            minZoom: 11,  // Limits how far user can zoom out
             maxZoom: 19,  // Limits how far user can zoom in
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(this.map);
@@ -56,15 +56,16 @@ export class Map {
         crimes.forEach(crime => {
             // Store crime's position in vector format
             let position = [crime.latitude, crime.longitude];
-            var marker = L.circleMarker(position, { color: '#cc1d1d', radius: 5, fillOpacity: 0.5 });
+            var marker = L.circleMarker(position, { color: '#d12e36', radius: 4, fillOpacity: 1 });
 
-            // Creates new marker at crime's position and sets custom crime data
+            // Stores custom crime data in marker
             marker.incident = crime.incident;
             marker.date = crime.date;
             marker.address = crime.address;
 
-            // Binds crime type to pop up so whenever the marker is clicked it show the crime name
-            marker.bindPopup(`${crime.incident} commited on ${crime.date} at ${crime.address}.`);
+            // Binds data to popup and hover tooltip to make crime markers interactable
+            marker.bindPopup(crime.getData());
+            marker.bindTooltip(`${crime.incident} - ${crime.date}`);
 
             // Add marker with data onto map
             marker.addTo(this.map);
