@@ -56,7 +56,7 @@ export class Map {
         crimes.forEach(crime => {
             // Store crime's position in vector format
             let position = [crime.latitude, crime.longitude];
-            var marker = L.circleMarker(position, { color: '#cc1d1d', radius: 5, fillOpacity: 0.5 });
+            var marker = L.circleMarker(position, { color: '#d12e36', radius: 4, fillOpacity: 1 });
 
             // Creates new marker at crime's position and sets custom crime data
             marker.incident = crime.incident;
@@ -64,7 +64,8 @@ export class Map {
             marker.address = crime.address;
 
             // Binds crime type to pop up so whenever the marker is clicked it show the crime name
-            marker.bindPopup(`${crime.incident} commited on ${crime.date} at ${crime.address}.`);
+            marker.bindPopup(`<b>Incident:</b> ${crime.incident}<br><b>Date:</b> ${crime.date}<br><b>Address:</b> ${crime.address}`);
+            marker.bindTooltip(`${crime.incident} - ${crime.date}`);
 
             // Add marker with data onto map
             marker.addTo(this.map);
