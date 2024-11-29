@@ -1,5 +1,5 @@
 // Import lists of allowed crime types from Crime class to create checkboxes for each type in crimes filter section
-import { CRIME_TYPES } from "../JavaScript/Crime.js";
+import { CRIME_TYPES } from "./crime.js";
 
 // Stores range of years in data to create checkboxes for their filters
 const YEAR_RANGE = [2011, 2024];
@@ -101,18 +101,16 @@ yearsTabButton.addEventListener("click", function () {
 });
 
 // Returns all the checked checkboxes in the passed-in container
-function getFilters(container) {
-    let filters = [];
+function getFilterStatuses(container) {
+    let filters = new Map();
 
     // Getes all checkboxes in container div
     let checkboxes = container.querySelectorAll("input[type='checkbox']");
 
     // Loops through all checkboxes in container and appends those that are checked
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            filters.push(checkbox.value);
-        }
-    });
+    for (const checkbox of checkboxes) {
+        filters.set(checkbox.value, checkbox.checked);
+    }
 
     return filters;
 }
@@ -127,17 +125,17 @@ function createCheckBox(name, container) {
     checkbox.value = name;
     checkbox.checked = true;
 
-    // Every time the checkbox is clicked, send out custom event. This is event is listened for in index.js
+    // Every time the checkbox is clicked, send out custom event. This is event is listened for in worldMap.js
     checkbox.addEventListener("click", function () {
         // Create a new event containing the data of currently checked filters
         const filterUpdateEvent = new CustomEvent("filterupdate", {
             detail: {
-                crimes: getFilters(crimesCheckboxes),
-                years: getFilters(yearsCheckboxes)
+                crimes: getFilterStatuses(crimesCheckboxes),
+                years: getFilterStatuses(yearsCheckboxes)
             }
         });
 
-        // Send out the event to trigger listener in index.js
+        // Send out the event to trigger listener in worldMap.js
         document.dispatchEvent(filterUpdateEvent);
     });
 
@@ -154,14 +152,23 @@ function createCheckBox(name, container) {
 // Creates the checkboxes for all filterable crime types and years
 async function fillFilterMenus() {
     // Loops through crime types and creates a checkbox for each
-    CRIME_TYPES.forEach(crimeType => {
+    for (const crimeType of CRIME_TYPES) {
         createCheckBox(crimeType, crimesCheckboxes);
-    });
+    }
 
     // Loops through range of years present in data and creates a checkbox for each
-    for (var i = YEAR_RANGE[0]; i < YEAR_RANGE[1]; i++) {
+    for (var i = YEAR_RANGE[0]; i <= YEAR_RANGE[1]; i++) {
         createCheckBox(i.toString(), yearsCheckboxes);
     }
 }
 
 fillFilterMenus();
+
+let setFilterTypes = new CustomEvent("setfiltertypes", {
+    detail: {
+        crimes: CRIME_TYPES,
+        years: YEAR_RANGE
+    }
+});
+
+document.dispatchEvent(setFilterTypes);

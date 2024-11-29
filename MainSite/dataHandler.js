@@ -1,7 +1,7 @@
 // Import crime class from external JavaScript file
-import { Crime } from '../JavaScript/Crime.js';
-import { HashTable } from '../JavaScript/HashTable.js';
-import { MinHeap } from '../JavaScript/MinHeap.js';
+import { Crime } from './crime.js';
+import { HashTable } from './hashTable.js';
+import { MinHeap } from './minHeap.js';
 
 // Stores radius limit to only allow values in Gainesville since dataset contains some crimes outside of Gainesville's
 const MAX_RANGE = 100;

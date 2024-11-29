@@ -1,5 +1,5 @@
-import { Map } from './map.js'
-import { DataHandler } from './DataHandler.js';
+import { WorldMap } from './worldMap.js'
+import { DataHandler } from './dataHandler.js';
 
 // Stores the two input elements for latitude and longitude
 const latitude = document.getElementById("latitude");
@@ -19,7 +19,7 @@ const radiusSlider = document.getElementById("radius-slider");
 var prevRadius = 0;
 
 // Create map object with center at current position
-var map = new Map(position);
+var map = new WorldMap(position);
 
 // Moves marker around as new coordinate is being typed into lat and long boxes
 latitude.addEventListener("input", setPositionMarker);
@@ -96,9 +96,3 @@ async function getCrimes() {
     prevDataStructure = dataStructure;
     prevRadius = radius;
 }
-
-// filterupdate event gets called every time a checkbox in filter menu is clicked
-document.addEventListener("filterupdate", function (e) {
-    console.log(e.detail.crimes);
-    console.log(e.detail.years);
-});
