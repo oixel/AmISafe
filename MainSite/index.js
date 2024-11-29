@@ -96,3 +96,9 @@ async function getCrimes() {
     prevDataStructure = dataStructure;
     prevRadius = radius;
 }
+
+// filterupdate event gets called every time a checkbox in filter menu is clicked
+document.addEventListener("filterupdate", function (e) {
+    console.log(e.detail.crimes);
+    console.log(e.detail.years);
+});

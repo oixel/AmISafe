@@ -100,14 +100,46 @@ yearsTabButton.addEventListener("click", function () {
     }
 });
 
+// Returns all the checked checkboxes in the passed-in container
+function getFilters(container) {
+    let filters = [];
+
+    // Getes all checkboxes in container div
+    let checkboxes = container.querySelectorAll("input[type='checkbox']");
+
+    // Loops through all checkboxes in container and appends those that are checked
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            filters.push(checkbox.value);
+        }
+    });
+
+    return filters;
+}
+
 // Creates a checkbox and label with passed-in name and then inserts it into container 
 function createCheckBox(name, container) {
     // Create checkbox item and fill it with it's information
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.id = name;
     checkbox.name = name;
     checkbox.value = name;
     checkbox.checked = true;
+
+    // Every time the checkbox is clicked, send out custom event. This is event is listened for in index.js
+    checkbox.addEventListener("click", function () {
+        // Create a new event containing the data of currently checked filters
+        const filterUpdateEvent = new CustomEvent("filterupdate", {
+            detail: {
+                crimes: getFilters(crimesCheckboxes),
+                years: getFilters(yearsCheckboxes)
+            }
+        });
+
+        // Send out the event to trigger listener in index.js
+        document.dispatchEvent(filterUpdateEvent);
+    });
 
     // Create label item and set it's text to the checkbox's value
     const label = document.createElement("label");
@@ -120,7 +152,7 @@ function createCheckBox(name, container) {
 }
 
 // Creates the checkboxes for all filterable crime types and years
-function fillFilterMenus() {
+async function fillFilterMenus() {
     // Loops through crime types and creates a checkbox for each
     CRIME_TYPES.forEach(crimeType => {
         createCheckBox(crimeType, crimesCheckboxes);
