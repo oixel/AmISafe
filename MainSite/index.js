@@ -21,9 +21,12 @@ var prevRadius = 0;
 // Create map object with center at current position
 var map = new Map(position);
 
+// Moves marker around as new coordinate is being typed into lat and long boxes
+latitude.addEventListener("input", setPositionMarker);
+longitude.addEventListener("input", setPositionMarker);
+
 // Adds functionality to all control buttons
 document.getElementById("get-location").addEventListener("click", getCurrentLocation);
-document.getElementById("set-marker").addEventListener("click", setPositionMarker);
 document.getElementById("get-crimes").addEventListener("click", getCrimes);
 document.getElementById("reset-view").addEventListener("click", function () { map.resetView(position) });
 
@@ -70,7 +73,7 @@ async function getCrimes() {
     setPositionMarker();
 
     // Determines whether the current position is different than last time the button was pressed
-    let isNewPosition = (position[0] != prevPosition[0]) && position[1] != prevPosition[1];
+    let isNewPosition = (position[0] != prevPosition[0]) || position[1] != prevPosition[1];
 
     // Grab current value in data selector
     let dataStructure = dsSelector.value;
