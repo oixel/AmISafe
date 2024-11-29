@@ -83,5 +83,9 @@ export class Map {
             // Append marker to list of all crime markers
             this.crimeMarkers.push(marker);
         });
+
+        // Displays the quantity of crimes that loaded around user above user marker
+        this.posMarker.bindPopup(`<b>${crimes.length}</b> total crimes found.`)
+        this.posMarker.openPopup();
     }
 }
