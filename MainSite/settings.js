@@ -1,13 +1,20 @@
+import { CRIME_TYPES } from "../JavaScript/Crime.js";
+
 // Grabs input elements in settings menu
 var settingsButton = document.getElementById("settings-button");
 var settings = document.getElementById("settings");
 var radiusSlider = document.getElementById("radius-slider");
 var filtersButton = document.getElementById("filters-button");
-var filters = document.getElementById("filters");
+var filtersMenu = document.getElementById("filters-menu");
+var crimeOption = document.getElementById("crime-filter-option");
+var crimeMenu = document.getElementById("crime-checkboxes");
+var yearOption = document.getElementById("year-filter-option");
+var yearMenu = document.getElementById("year-checkboxes");
 var timeButton = document.getElementById("time-button");
 
+
 // Add toggling to settings menu by clicking settings button
-settingsButton.addEventListener("click", function (e) {
+settingsButton.addEventListener("click", function () {
     // Determines whether settings menu is currently visible by checking its display state
     let isOpen = settings.style.display == "flex";
 
@@ -17,7 +24,7 @@ settingsButton.addEventListener("click", function (e) {
 
         // Re-opens the filters menu if it was previously open
         if (filtersButton.classList.contains("toggled-on")) {
-            filters.style.display = "block";
+            filtersMenu.style.display = "block";
         }
 
         settingsButton.textContent = "✖️";
@@ -27,7 +34,7 @@ settingsButton.addEventListener("click", function (e) {
         settingsButton.textContent = "⚙️";
 
         // Hides filters menu when settings are closed
-        filters.style.display = "none";
+        filtersMenu.style.display = "none";
     }
 });
 
@@ -43,11 +50,11 @@ filtersButton.addEventListener("click", function () {
     // Alternates button's background color and visibility of filters menu
     if (!isToggledOn) {
         filtersButton.classList.add("toggled-on");
-        filters.style.display = "block";
+        filtersMenu.style.display = "flex";
     }
     else {
         filtersButton.classList.remove("toggled-on");
-        filters.style.display = "none";
+        filtersMenu.style.display = "none";
     }
 });
 
@@ -63,3 +70,64 @@ timeButton.addEventListener("click", function () {
         timeButton.classList.remove("toggled-on");
     }
 });
+
+// Ensures only one 
+crimeOption.addEventListener("click", function () {
+    let isToggledOn = crimeOption.classList.contains("toggled-on");
+
+    // 
+    if (!isToggledOn) {
+        crimeOption.classList.add("toggled-on");
+        crimeMenu.style.display = "flex";
+
+        yearOption.classList.remove("toggled-on");
+        yearMenu.style.display = "none";
+    }
+});
+
+// 
+yearOption.addEventListener("click", function () {
+    let isToggledOn = yearOption.classList.contains("toggled-on");
+
+    // 
+    if (!isToggledOn) {
+        yearOption.classList.add("toggled-on");
+        yearMenu.style.display = "flex";
+
+        crimeOption.classList.remove("toggled-on");
+        crimeMenu.style.display = "none";
+    }
+});
+
+// 
+function createCheckBox(name, container) {
+    // Create checkbox item and fill it with it's information
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = name;
+    checkbox.checked = true;
+
+    // 
+    const label = document.createElement("label");
+    label.setAttribute("for", checkbox.name);
+    label.textContent = checkbox.name;
+
+    // 
+    container.appendChild(checkbox);
+    container.appendChild(label)
+}
+
+// 
+function fillFilterMenus() {
+    // 
+    CRIME_TYPES.forEach(crimeType => {
+        createCheckBox(crimeType, crimeMenu)
+    });
+
+    // 
+    for (var i = 2011; i < 2025; i++) {
+        createCheckBox(i.toString(), yearMenu);
+    }
+}
+
+fillFilterMenus();

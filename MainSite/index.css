@@ -89,7 +89,6 @@ input[type=number] {
     right: 0;
 
     margin: 10px;
-    padding: 5px;
 
     border-radius: 5px;
 }
@@ -99,7 +98,9 @@ input[type=number] {
 
     width: 35px;
     height: 35px;
+
     margin: 10px;
+    padding: 5px;
 
     border: none;
 
@@ -110,18 +111,15 @@ input[type=number] {
     display: none;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 150px;
 
+    height: 150px;
+    width: 200px;
+
+    padding: 5px;
+    padding-left: 10px;
     padding-bottom: 10px;
 
     background-color: white;
-}
-
-/* Adds width to the settings menus */
-#settings,
-#filters {
-    width: 200px;
-    padding-left: 10px;
 }
 
 /* Add small gap between "Data Structure:" header and selection box */
@@ -153,12 +151,60 @@ input[type=number] {
     background-color: #a9a9a9;
 }
 
-#filters {
+#filters-menu {
     display: none;
+    flex-direction: column;
     position: absolute;
     top: 0;
     right: 0;
-    height: 100px;
+    height: 110px;
+    width: 215px;
     background-color: rgb(255, 255, 255);
     margin-top: 180px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+#filters-option-buttons {
+    display: flex;
+}
+
+#crime-filter-option,
+#year-filter-option {
+    border: none;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+#filter-checkboxes {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#crime-checkboxes {
+    display: flex;
+    font-size: 12px;
+}
+
+#year-checkboxes {
+    display: none;
+    padding-top: 4px;
+}
+
+#crime-checkboxes,
+#year-checkboxes {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+}
+
+#crime-checkboxes input,
+#year-checkboxes input {
+    float: left;
 }
