@@ -14,9 +14,9 @@ export class HashTable {
         this.table.fill(null);
 
         // Insert all crimes into hashtable
-        crimes.forEach(crime => {
+        for (const crime of crimes) {
             this.insert(crime);
-        });
+        }
     }
 
     // Hashes based on the amount of resizes and ensures it is in the range of buckets
@@ -46,9 +46,9 @@ export class HashTable {
         this.entries = 0;
 
         // Rehash and refill table with old values
-        tempTable.forEach(crime => {
+        for (const crime of tempTable) {
             if (crime != null) this.insert(crime);
-        });
+        }
     }
 
     insert(crime) {
@@ -84,12 +84,12 @@ export class HashTable {
         let crimesInRange = [];
 
         // Loops through all buckets in table
-        this.table.forEach(crime => {
+        for (const crime of this.table) {
             // Only adds crime if bucket is not empty and it is in desired radius
             if (crime !== null && crime.distance <= radius) {
                 crimesInRange.push(crime);
             }
-        })
+        }
 
         // Return all the crimes within radius of current position
         return crimesInRange;
