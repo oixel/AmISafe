@@ -1,10 +1,16 @@
-// Try global variable outside of map scope
+// 
+var happyMarker = L.icon({
+    iconUrl: './assets/icons/userIconHappy.png',
+
+    iconSize: [64, 64],
+    iconAnchor: [35, 64],
+    popupAnchor: [-2.5, -55]
+});
 
 export class WorldMap {
     constructor(position) {
         this.posMarker = null;
         this.zoomLevel = 13;
-        this.crimeMarkers = [];
 
         // Initializes map with center at start start position
         this.map = L.map('map', {
@@ -26,44 +32,22 @@ export class WorldMap {
         L.control.zoom({
             position: 'bottomleft'
         }).addTo(this.map);
-
-        document.addEventListener("setfiltertypes", this.setFilters);
-
-        // filterupdate event gets called every time a checkbox in filter menu is clicked
-        document.addEventListener("filterupdate", function (e) {
-            const years = e.detail.years;
-            const crimes = e.detail.crimes;
-
-            for (const year of years.keys()) {
-                for (const crime of crimes.keys()) {
-                    let key = year + "_" + crime;
-                    const filtered = years.get(year) && crimes.get(crime);
-                    this.filters.set(key, filtered);
-                }
-            }
-        });
     }
 
-    setFilters(e) {
-        // 
-        const years = e.detail.years;
-        const crimes = e.detail.crimes;
-
+    setFilters(crimes, years) {
         // 
         this.filters = new Map();
 
-        // 
-        for (let i = years[0]; i <= years[1]; i++) {
-            // 
-            let year = i.toString();
-
-            // 
-            for (const crime of crimes) {
+        for (const year of years.keys()) {
+            for (const crime of crimes.keys()) {
                 let key = year + "_" + crime;
-                this.filters.set(key, true);
-            }
 
+                const filtered = years.get(year) && crimes.get(crime);
+                this.filters.set(key, filtered);
+            }
         }
+
+        if (this.layerGroups) this.renderCrimeMarkers();
     }
 
     // Resets camera to point at current position
@@ -77,27 +61,41 @@ export class WorldMap {
         if (this.posMarker) this.map.removeLayer(this.posMarker);
 
         // Create new marker at position and move camera to it
-        this.posMarker = L.marker(position).addTo(this.map);
+        this.posMarker = L.marker(position, { icon: happyMarker }).addTo(this.map);
     }
 
     // Removes all crime markers currently on the map
     clearCrimeMarkers() {
-        // Loops through all markers on the map and deletes them
-        for (const marker of this.crimeMarkers) {
-            this.map.removeLayer(marker);
-        }
+        if (!this.layerGroups) return;
 
-        // Clears the crime markers array since the markers are no longer on map
-        this.crimeMarkers.length = 0;
+        // Loops through all markers on the map and deletes them
+        for (const key of this.layerGroups.keys()) {
+            this.map.removeLayer(this.layerGroups.get(key));
+        }
+    }
+
+    // 
+    renderCrimeMarkers() {
+        this.clearCrimeMarkers();
+
+        for (const key of this.filters.keys()) {
+            if (this.filters.get(key)) {
+                this.layerGroups.get(key).addTo(this.map);
+            }
+        }
     }
 
     // Fill map with all markers for all crimes in passed-in vector
     setCrimeMarkers(crimesInRadius) {
+        this.clearCrimeMarkers();
+
+        // 
         this.layerGroups = new Map();
-        console.log(this.filters);
-        // for (const filter of this.filters.keys()) {
-        //     //this.layerGroups.set(filter, L.layerGroup());
-        // }
+
+        // 
+        for (const filter of this.filters.keys()) {
+            this.layerGroups.set(filter, new L.layerGroup());
+        }
 
         for (const crime of crimesInRadius) {
             // Store crime's position in vector format
@@ -123,15 +121,16 @@ export class WorldMap {
                 if (this.isPopupOpen()) this.closeTooltip();
             });
 
-            // Add marker with data onto map
-            marker.addTo(this.map);
-
-            // Append marker to list of all crime markers
-            this.crimeMarkers.push(marker);
+            // 
+            let key = crime.year + "_" + crime.crimeType;
+            marker.addTo(this.layerGroups.get(key));
         }
 
+        // 
+        this.renderCrimeMarkers();
+
         // Displays the quantity of crimes that loaded around user above user marker
-        this.posMarker.bindPopup(`<b>${crimes.length}</b> crimes found nearby.`)
+        this.posMarker.bindPopup(`<b>${crimesInRadius.length}</b> crimes found nearby.`)
         this.posMarker.openPopup();
     }
 }

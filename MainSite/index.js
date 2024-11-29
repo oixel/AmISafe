@@ -87,7 +87,6 @@ async function getCrimes() {
 
         // Gets crime around current position and fills the map with markers
         var crimes = await dataHandler.getCrimesInRadius(radius, dataStructure);
-        map.clearCrimeMarkers();  // Wipe current markers before adding new markers
         map.setCrimeMarkers(crimes);
     }
 
@@ -96,3 +95,10 @@ async function getCrimes() {
     prevDataStructure = dataStructure;
     prevRadius = radius;
 }
+
+//
+document.addEventListener("setfilter", function (e) {
+    const crimes = e.detail.crimes;
+    const years = e.detail.years;
+    map.setFilters(crimes, years);
+});

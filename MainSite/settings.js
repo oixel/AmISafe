@@ -2,7 +2,7 @@
 import { CRIME_TYPES } from "./crime.js";
 
 // Stores range of years in data to create checkboxes for their filters
-const YEAR_RANGE = [2011, 2024];
+const YEAR_RANGE = [2010, 2024];
 
 // Grabs elements from HTML page
 var settingsButton = document.getElementById("settings-button");
@@ -115,6 +115,19 @@ function getFilterStatuses(container) {
     return filters;
 }
 
+function setFilter() {
+    // Create a new event containing the data of currently checked filters
+    const setFilterEvent = new CustomEvent("setfilter", {
+        detail: {
+            crimes: getFilterStatuses(crimesCheckboxes),
+            years: getFilterStatuses(yearsCheckboxes)
+        }
+    });
+
+    // Send out the event to trigger listener in worldMap.js
+    document.dispatchEvent(setFilterEvent);
+}
+
 // Creates a checkbox and label with passed-in name and then inserts it into container 
 function createCheckBox(name, container) {
     // Create checkbox item and fill it with it's information
@@ -126,18 +139,7 @@ function createCheckBox(name, container) {
     checkbox.checked = true;
 
     // Every time the checkbox is clicked, send out custom event. This is event is listened for in worldMap.js
-    checkbox.addEventListener("click", function () {
-        // Create a new event containing the data of currently checked filters
-        const filterUpdateEvent = new CustomEvent("filterupdate", {
-            detail: {
-                crimes: getFilterStatuses(crimesCheckboxes),
-                years: getFilterStatuses(yearsCheckboxes)
-            }
-        });
-
-        // Send out the event to trigger listener in worldMap.js
-        document.dispatchEvent(filterUpdateEvent);
-    });
+    checkbox.addEventListener("click", setFilter);
 
     // Create label item and set it's text to the checkbox's value
     const label = document.createElement("label");
@@ -163,12 +165,4 @@ async function fillFilterMenus() {
 }
 
 fillFilterMenus();
-
-let setFilterTypes = new CustomEvent("setfiltertypes", {
-    detail: {
-        crimes: CRIME_TYPES,
-        years: YEAR_RANGE
-    }
-});
-
-document.dispatchEvent(setFilterTypes);
+setFilter();

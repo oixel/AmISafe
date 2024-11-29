@@ -44,7 +44,7 @@ export class DataHandler {
                 crime.setDistance(position[0], position[1]);
 
                 // Only appends crime if it is the range of Gainesville
-                if (crime.distance <= MAX_RANGE) crimes.push(crime);
+                if (crime.distance <= MAX_RANGE && crime.year >= 2010) crimes.push(crime);
             }
         }
 

@@ -195,12 +195,13 @@ input[type=number] {
 #crimes-checkboxes {
     /* Sets crimes to be visible when menu is first opened */
     display: flex;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 #years-checkboxes {
     /* Hides years checkboxes initially*/
     display: none;
+    font-size: 13px;
 }
 
 #crimes-checkboxes,

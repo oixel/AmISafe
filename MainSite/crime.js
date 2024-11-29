@@ -34,13 +34,10 @@ export class Crime {
 
     // Determines crime type out of valid CRIME_TYPES from incident information
     setCrimeType() {
-        // Store this.incident into variable to avoid having to write "this." every if statement
-        const incident = this.incident;
-
         // Loops through all filterable crime types
         for (var i = 0; i < CRIME_TYPES.length; i++) {
             // If the incident information contains one of the crime types, assign it to this Crime object
-            if (incident.toLowerCase().includes(CRIME_TYPES[i].toLowerCase())) {
+            if (this.incident.toLowerCase().includes(CRIME_TYPES[i].toLowerCase())) {
                 this.crimeType = CRIME_TYPES[i];
                 break;
             }
