@@ -31,7 +31,7 @@ export class DataHandler {
         var crimes = [];
 
         // Loops through all lines in CSV
-        lines.forEach(line => {
+        for (const line of lines) {
             // Stores values seperated by delimiter of "," into array called data
             var data = line.split(",");
 
@@ -46,7 +46,7 @@ export class DataHandler {
                 // Only appends crime if it is the range of Gainesville
                 if (crime.distance <= MAX_RANGE) crimes.push(crime);
             }
-        });
+        }
 
         // Returns crimes in range of Gainesville with proper coordinate data
         return crimes;
