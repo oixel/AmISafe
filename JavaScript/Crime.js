@@ -1,3 +1,6 @@
+// 
+export const CRIME_TYPES = ["Assault", "Arson", "Arrest", "Battery", "Burglary", "Death", "Drug Violation", "Stolen Vehicle", "Theft", "Other"];
+
 export class Crime {
     constructor(incident, occurence, address, latitude, longitude) {
         this.incident = incident;
@@ -34,38 +37,15 @@ export class Crime {
         // Store this.incident into variable to avoid having to write "this." every if statement
         const incident = this.incident;
 
-        // Assigns category based on text included in incident
-        if (incident.includes("Assault")) {
-            this.crimeType = "Assault";
+        // 
+        for (var i = 0; i < CRIME_TYPES.length; i++) {
+            if (incident.toLowerCase().includes(CRIME_TYPES[i].toLowerCase())) {
+                this.crimeType = CRIME_TYPES[i];
+            }
         }
-        else if (incident.includes("Arson")) {
-            this.crimeType = "Arson";
-        }
-        else if (incident.includes("Arrest")) {
-            this.crimeType = "Arrest";
-        }
-        else if (incident.includes("Battery")) {
-            this.crimeType = "Battery";
-        }
-        else if (incident.includes("Burglary")) {
-            this.crimeType = "Burglary";
-        }
-        else if (incident.includes("Death")) {
-            this.crimeType = "Death Investigation";
-        }
-        else if (incident.includes("Drug")) {
-            this.crimeType = "Drug Violation";
-        }
-        else if (incident.includes("Stolen Vehicle")) {
-            this.crimeType = "Stolen Vehicle";
-        }
-        else if (incident.includes("Theft")) {
-            this.crimeType = "Theft";
-        }
-        else {
-            // Otherwise, initialize crime category to "other"
-            this.crimeType = "Other";
-        }
+
+        // 
+        if (!this.crimeType) this.crimeType = "Other";
     }
 
 
