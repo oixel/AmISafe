@@ -69,6 +69,6 @@ export class DataHandler {
     async getCrimesInRadius(radius, dataStructure) {
         let structure = (dataStructure == "minheap") ? new MinHeap(this.crimes) : new HashTable(276, this.crimes);
         console.log(`Used ${structure.constructor.name} data structure!`)
-        return structure.getCrimesInRange(radius);
+        return structure.getCrimesInRadius(radius);
     }
 }

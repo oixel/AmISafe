@@ -92,14 +92,14 @@ export class WorldMap {
     }
 
     // Fill map with all markers for all crimes in passed-in vector
-    setCrimeMarkers(crimes) {
+    setCrimeMarkers(crimesInRadius) {
         this.layerGroups = new Map();
         console.log(this.filters);
         // for (const filter of this.filters.keys()) {
         //     //this.layerGroups.set(filter, L.layerGroup());
         // }
 
-        for (const crime of crimes) {
+        for (const crime of crimesInRadius) {
             // Store crime's position in vector format
             let position = [crime.latitude, crime.longitude];
             var marker = L.circleMarker(position, { color: '#d12e36', radius: 4, fillOpacity: 1 });

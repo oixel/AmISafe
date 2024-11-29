@@ -67,7 +67,7 @@ export class MinHeap {
     }
 
     // Returns all the crime in a given distance from current position
-    getCrimesInRange(radius) {
+    getCrimesInRadius(radius) {
         const result = [];
 
         let minElement = this.extractMin();

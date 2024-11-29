@@ -79,7 +79,7 @@ export class HashTable {
     }
 
     // Returns all the crimes within radius of current position
-    getCrimesInRange(radius) {
+    getCrimesInRadius(radius) {
         // Stores all the crimes in given radius
         let crimesInRange = [];
 
