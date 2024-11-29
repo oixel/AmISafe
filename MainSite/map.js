@@ -85,7 +85,7 @@ export class Map {
         });
 
         // Displays the quantity of crimes that loaded around user above user marker
-        this.posMarker.bindPopup(`<b>${crimes.length}</b> total crimes found.`)
+        this.posMarker.bindPopup(`<b>${crimes.length}</b> crimes found nearby.`)
         this.posMarker.openPopup();
     }
 }
