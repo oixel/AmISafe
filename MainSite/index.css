@@ -3,7 +3,8 @@ html,
 body {
     margin: 0;
     height: 100%;
-    overflow: hidden
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Set paragraph items to have no margin by default */
