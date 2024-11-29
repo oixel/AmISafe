@@ -1,17 +1,20 @@
+// Import lists of allowed crime types from Crime class to create checkboxes for each type in crimes filter section
 import { CRIME_TYPES } from "../JavaScript/Crime.js";
 
-// Grabs input elements in settings menu
+// Stores range of years in data to create checkboxes for their filters
+const YEAR_RANGE = [2011, 2024];
+
+// Grabs elements from HTML page
 var settingsButton = document.getElementById("settings-button");
 var settings = document.getElementById("settings");
 var radiusSlider = document.getElementById("radius-slider");
-var filtersButton = document.getElementById("filters-button");
-var filtersMenu = document.getElementById("filters-menu");
-var crimeOption = document.getElementById("crime-filter-option");
-var crimeMenu = document.getElementById("crime-checkboxes");
-var yearOption = document.getElementById("year-filter-option");
-var yearMenu = document.getElementById("year-checkboxes");
+var filterMenuButton = document.getElementById("filter-menu-button");
+var filtersMenu = document.getElementById("filter-menu");
+var crimesTabButton = document.getElementById("crimes-tab-button");
+var crimesCheckboxes = document.getElementById("crimes-checkboxes");
+var yearsTabButton = document.getElementById("years-tab-button");
+var yearsCheckboxes = document.getElementById("years-checkboxes");
 var timeButton = document.getElementById("time-button");
-
 
 // Add toggling to settings menu by clicking settings button
 settingsButton.addEventListener("click", function () {
@@ -22,8 +25,8 @@ settingsButton.addEventListener("click", function () {
     if (!isOpen) {
         settings.style.display = "flex";
 
-        // Re-opens the filters menu if it was previously open
-        if (filtersButton.classList.contains("toggled-on")) {
+        // Re-opens the filter menu if it was previously open
+        if (filterMenuButton.classList.contains("toggled-on")) {
             filtersMenu.style.display = "block";
         }
 
@@ -33,7 +36,7 @@ settingsButton.addEventListener("click", function () {
         settings.style.display = "none";
         settingsButton.textContent = "⚙️";
 
-        // Hides filters menu when settings are closed
+        // Hides filter menu when settings are closed
         filtersMenu.style.display = "none";
     }
 });
@@ -43,26 +46,24 @@ radiusSlider.addEventListener("input", function () {
     document.getElementById("radius-text").textContent = `${radiusSlider.value} miles`;
 });
 
-// Toggles the visibility of filters menu when the button is toggled
-filtersButton.addEventListener("click", function () {
-    let isToggledOn = filtersButton.classList.contains("toggled-on");
+// Toggles the button's background color and visibility of filter menu
+filterMenuButton.addEventListener("click", function () {
+    let isToggledOn = filterMenuButton.classList.contains("toggled-on");
 
-    // Alternates button's background color and visibility of filters menu
     if (!isToggledOn) {
-        filtersButton.classList.add("toggled-on");
+        filterMenuButton.classList.add("toggled-on");
         filtersMenu.style.display = "flex";
     }
     else {
-        filtersButton.classList.remove("toggled-on");
+        filterMenuButton.classList.remove("toggled-on");
         filtersMenu.style.display = "none";
     }
 });
 
-// 
+// Toggles the button's background color and visibility of on-screen timer
 timeButton.addEventListener("click", function () {
     let isToggledOn = timeButton.classList.contains("toggled-on");
 
-    // 
     if (!isToggledOn) {
         timeButton.classList.add("toggled-on");
     }
@@ -71,62 +72,63 @@ timeButton.addEventListener("click", function () {
     }
 });
 
-// Ensures only one 
-crimeOption.addEventListener("click", function () {
-    let isToggledOn = crimeOption.classList.contains("toggled-on");
+// Switches filter tab to crimes tab when button is pressed
+crimesTabButton.addEventListener("click", function () {
+    let isToggledOn = crimesTabButton.classList.contains("toggled-on");
 
-    // 
+    // If not already open, closes years tab and opens crimes tab instead
     if (!isToggledOn) {
-        crimeOption.classList.add("toggled-on");
-        crimeMenu.style.display = "flex";
+        crimesTabButton.classList.add("toggled-on");
+        crimesCheckboxes.style.display = "flex";
 
-        yearOption.classList.remove("toggled-on");
-        yearMenu.style.display = "none";
+        yearsTabButton.classList.remove("toggled-on");
+        yearsCheckboxes.style.display = "none";
     }
 });
 
-// 
-yearOption.addEventListener("click", function () {
-    let isToggledOn = yearOption.classList.contains("toggled-on");
+// Switches filter tab to years tab when button is pressed
+yearsTabButton.addEventListener("click", function () {
+    let isToggledOn = yearsTabButton.classList.contains("toggled-on");
 
-    // 
+    // If not already open, closes crimes tab and opens year tab instead
     if (!isToggledOn) {
-        yearOption.classList.add("toggled-on");
-        yearMenu.style.display = "flex";
+        yearsTabButton.classList.add("toggled-on");
+        yearsCheckboxes.style.display = "flex";
 
-        crimeOption.classList.remove("toggled-on");
-        crimeMenu.style.display = "none";
+        crimesTabButton.classList.remove("toggled-on");
+        crimesCheckboxes.style.display = "none";
     }
 });
 
-// 
+// Creates a checkbox and label with passed-in name and then inserts it into container 
 function createCheckBox(name, container) {
     // Create checkbox item and fill it with it's information
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = name;
+    checkbox.value = name;
     checkbox.checked = true;
 
-    // 
+    // Create label item and set it's text to the checkbox's value
     const label = document.createElement("label");
     label.setAttribute("for", checkbox.name);
     label.textContent = checkbox.name;
 
-    // 
+    // Insert checkbox and its label into passed-in container
     container.appendChild(checkbox);
     container.appendChild(label)
 }
 
-// 
+// Creates the checkboxes for all filterable crime types and years
 function fillFilterMenus() {
-    // 
+    // Loops through crime types and creates a checkbox for each
     CRIME_TYPES.forEach(crimeType => {
-        createCheckBox(crimeType, crimeMenu)
+        createCheckBox(crimeType, crimesCheckboxes);
     });
 
-    // 
-    for (var i = 2011; i < 2025; i++) {
-        createCheckBox(i.toString(), yearMenu);
+    // Loops through range of years present in data and creates a checkbox for each
+    for (var i = YEAR_RANGE[0]; i < YEAR_RANGE[1]; i++) {
+        createCheckBox(i.toString(), yearsCheckboxes);
     }
 }
 
