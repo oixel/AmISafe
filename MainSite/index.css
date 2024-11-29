@@ -81,9 +81,10 @@ input[type=number] {
     margin-right: 5px;
 }
 
+/* Position all setting-related elements in the top right of page */
 #settings-button,
 #settings,
-#filters {
+#filter-menu {
     position: absolute;
     top: 0;
     right: 0;
@@ -99,7 +100,6 @@ input[type=number] {
     width: 35px;
     height: 35px;
 
-    margin: 10px;
     padding: 5px;
 
     border: none;
@@ -151,60 +151,64 @@ input[type=number] {
     background-color: #a9a9a9;
 }
 
-#filters-menu {
+#filter-menu {
     display: none;
     flex-direction: column;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 110px;
+
     width: 215px;
-    background-color: rgb(255, 255, 255);
+    height: 110px;
+
     margin-top: 180px;
-    margin-right: 10px;
-    border-radius: 5px;
+
+    background-color: rgb(255, 255, 255);
 }
 
-#filters-option-buttons {
+#filter-tab-buttons {
     display: flex;
 }
 
-#crime-filter-option,
-#year-filter-option {
-    border: none;
+#crimes-tab-button,
+#years-tab-button {
     flex-grow: 1;
+
     padding-top: 5px;
     padding-bottom: 5px;
+
     text-align: center;
+
+    border: none;
 }
 
+/* Stylizes div containing the two divs of checkboxes */
 #filter-checkboxes {
-    flex-grow: 1;
-
     display: flex;
+    flex-grow: 1;
     justify-content: center;
     align-items: center;
 }
 
-#crime-checkboxes {
+#crimes-checkboxes {
+    /* Sets crimes to be visible when menu is first opened */
     display: flex;
     font-size: 12px;
 }
 
-#year-checkboxes {
+#years-checkboxes {
+    /* Hides years checkboxes initially*/
     display: none;
-    padding-top: 4px;
 }
 
-#crime-checkboxes,
-#year-checkboxes {
+#crimes-checkboxes,
+#years-checkboxes {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
+
     margin-right: 4px;
 }
 
-#crime-checkboxes input,
-#year-checkboxes input {
-    float: left;
+/* Ensures that checkboxes get pointing finger when hovered over */
+input[type=checkbox] {
+    cursor: pointer;
 }
