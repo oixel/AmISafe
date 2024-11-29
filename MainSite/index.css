@@ -65,10 +65,14 @@ button {
 
 /* Blocks arrows on number inputs for all browsers except firefox */
 input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button,
-input[type=number] {
+input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
+}
+
+/* Blocks arrows on number inputs in firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 /* Makes latitude and longitude boxes smaller*/
