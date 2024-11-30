@@ -69,9 +69,6 @@ function setPositionMarker() {
 
 // Fills map with crime markers around user
 async function getCrimes() {
-    // Updates marker to current location if not previously updated
-    setPositionMarker();
-
     // Determines whether the current position is different than last time the button was pressed
     let isNewPosition = (position[0] != prevPosition[0]) || position[1] != prevPosition[1];
 
@@ -83,6 +80,7 @@ async function getCrimes() {
 
     // Only updates crimes around position if position, data structure, or radius has changed
     if (isNewPosition || dataStructure != prevDataStructure || radius != prevRadius) {
+        // Update the distance values of the crime objects to reflect distance to new position
         dataHandler.updateDistances(position);
 
         // Gets crime around current position and fills the map with markers
@@ -96,7 +94,7 @@ async function getCrimes() {
     prevRadius = radius;
 }
 
-//
+// Updates filtered markers on previously created map object
 document.addEventListener("setfilter", function (e) {
     const crimes = e.detail.crimes;
     const years = e.detail.years;

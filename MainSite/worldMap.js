@@ -1,12 +1,3 @@
-// 
-var happyMarker = L.icon({
-    iconUrl: './assets/icons/userIconHappy.png',
-
-    iconSize: [64, 64],
-    iconAnchor: [35, 64],
-    popupAnchor: [-2.5, -55]
-});
-
 export class WorldMap {
     constructor(position) {
         this.posMarker = null;
@@ -32,22 +23,43 @@ export class WorldMap {
         L.control.zoom({
             position: 'bottomleft'
         }).addTo(this.map);
+
+        // Instantiates regular custom icon
+        this.customMarker = L.icon({
+            iconUrl: './assets/icons/userIcon.png',
+
+            iconSize: [64, 64],
+            iconAnchor: [35, 64],
+            popupAnchor: [-2.5, -55]
+        });
+
+        // Instantiates custom marker of happy little guy holding duck. Shows up when no crimes are found in radius.
+        this.happyMarker = L.icon({
+            iconUrl: './assets/icons/userIconHappy.png',
+
+            iconSize: [64, 64],
+            iconAnchor: [35, 64],
+            popupAnchor: [-2.5, -55]
+        });
     }
 
+    // Updates state of filters whenever a change occurs. Stores booleans of what 
     setFilters(crimes, years) {
-        // 
+        // Create a new map to hold boolean of whether certain data is
         this.filters = new Map();
 
+        // Creates a boolean in map for each crime type in each year (For example, "2011Arson")
         for (const year of years.keys()) {
             for (const crime of crimes.keys()) {
-                let key = year + "_" + crime;
+                let key = year + crime;
 
                 const filtered = years.get(year) && crimes.get(crime);
                 this.filters.set(key, filtered);
             }
         }
 
-        if (this.layerGroups) this.renderCrimeMarkers();
+        // Re-render any crime markers currently on the screen to reflect updated filters
+        this.renderCrimeMarkers();
     }
 
     // Resets camera to point at current position
@@ -56,16 +68,17 @@ export class WorldMap {
     }
 
     // Creates a marker at inputted position and moves camera to it
-    updatePosition(position) {
+    updatePosition(position, markerIcon = this.customMarker) {
         // Deletes previous position marker if one exists
         if (this.posMarker) this.map.removeLayer(this.posMarker);
 
         // Create new marker at position and move camera to it
-        this.posMarker = L.marker(position, { icon: happyMarker }).addTo(this.map);
+        this.posMarker = L.marker(position, { icon: markerIcon }).addTo(this.map);
     }
 
     // Removes all crime markers currently on the map
     clearCrimeMarkers() {
+        // If no markers exist on the map, exit function since there is nothing to remove
         if (!this.layerGroups) return;
 
         // Loops through all markers on the map and deletes them
@@ -74,11 +87,17 @@ export class WorldMap {
         }
     }
 
-    // 
+    // Displays the crime markers that are not currently filtered out
     renderCrimeMarkers() {
+        // If there are no markers to render, exit out of function
+        if (!this.layerGroups) return;
+
+        // Wipe previous crime markers before rendering new ones
         this.clearCrimeMarkers();
 
+        // Loops through all possible combinations of crime types and years
         for (const key of this.filters.keys()) {
+            // If the checkbox for this combination is toggled on, display it!
             if (this.filters.get(key)) {
                 this.layerGroups.get(key).addTo(this.map);
             }
@@ -87,12 +106,16 @@ export class WorldMap {
 
     // Fill map with all markers for all crimes in passed-in vector
     setCrimeMarkers(crimesInRadius) {
+        // Makes user icon happy if no crimes are around
+        if (crimesInRadius.length == 0) this.updatePosition(this.posMarker.getLatLng(), this.happyMarker);
+
+        // Wipes markers already on the board
         this.clearCrimeMarkers();
 
-        // 
+        // Reset layer groups since new markers are to be created
         this.layerGroups = new Map();
 
-        // 
+        // Fill new map with empty layer groups for each possible crime and year combination
         for (const filter of this.filters.keys()) {
             this.layerGroups.set(filter, new L.layerGroup());
         }
@@ -121,15 +144,15 @@ export class WorldMap {
                 if (this.isPopupOpen()) this.closeTooltip();
             });
 
-            // 
-            let key = crime.year + "_" + crime.crimeType;
+            // Determine current crime's combination of year and crime, and add it to it's specific layer group
+            let key = crime.year + crime.crimeType;
             marker.addTo(this.layerGroups.get(key));
         }
 
-        // 
+        // Display the new markers!
         this.renderCrimeMarkers();
 
-        // Displays the quantity of crimes that loaded around user above user marker
+        // Displays the quantity of crimes found within radius above the user's marker
         this.posMarker.bindPopup(`<b>${crimesInRadius.length}</b> crimes found nearby.`)
         this.posMarker.openPopup();
     }
