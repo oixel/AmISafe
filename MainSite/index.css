@@ -165,8 +165,43 @@ input[type=number] {
     height: 110px;
 
     margin-top: 180px;
+    
 
     background-color: rgb(255, 255, 255);
+}
+
+#time-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    border-radius: 5px;
+
+    display: none;
+    flex-direction: column;
+    width: 215px;
+    height: 110px;
+    background-color: rgb(255, 255, 255);
+    
+    margin-top: 180px;
+
+}
+
+#credits-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    border-radius: 5px;
+
+    display: none;
+    flex-direction: column;
+    width: 215px;
+    height: 110px;
+    background-color: rgb(255, 255, 255);
+    
+    margin-top: 180px;
+
 }
 
 #filter-tab-buttons {

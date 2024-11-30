@@ -15,6 +15,9 @@ var crimesCheckboxes = document.getElementById("crimes-checkboxes");
 var yearsTabButton = document.getElementById("years-tab-button");
 var yearsCheckboxes = document.getElementById("years-checkboxes");
 var timeButton = document.getElementById("time-button");
+var timeMenu = document.getElementById("time-menu");
+var creditsButton = document.getElementById("credits-button");
+var creditsMenu = document.getElementById("credits-menu");
 
 // Add toggling to settings menu by clicking settings button
 settingsButton.addEventListener("click", function () {
@@ -65,10 +68,26 @@ timeButton.addEventListener("click", function () {
     let isToggledOn = timeButton.classList.contains("toggled-on");
 
     if (!isToggledOn) {
-        timeButton.classList.add("toggled-on");
+        timeButton.classList.add("toggled-on"); 
+        timeMenu.style.display = "flex";
     }
     else {
         timeButton.classList.remove("toggled-on");
+        timeMenu.style.display = "none";
+    }
+});
+
+// Toggles the button's background color and visibility of on-screen credits
+creditsButton.addEventListener("click", function () {
+    let isToggledOn = creditsButton.classList.contains("toggled-on");
+
+    if (!isToggledOn) {
+        creditsButton.classList.add("toggled-on"); 
+        creditsMenu.style.display = "flex";
+    }
+    else {
+        creditsButton.classList.remove("toggled-on");
+        creditsMenu.style.display = "none";
     }
 });
 
