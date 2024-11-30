@@ -3,6 +3,9 @@ export class WorldMap {
         this.posMarker = null;
         this.zoomLevel = 13;
 
+        // Initializes the circle's radius to slider's initial value
+        this.radius = document.getElementById("radius-slider").value;
+
         // Initializes map with center at start start position
         this.map = L.map('map', {
             center: position,
@@ -74,6 +77,30 @@ export class WorldMap {
 
         // Create new marker at position and move camera to it
         this.posMarker = L.marker(position, { icon: markerIcon }).addTo(this.map);
+
+        this.updateCircle(this.radius);
+    }
+
+    // Updates the circle drawn around user
+    updateCircle(radius) {
+        // Update the radius to passed-in value
+        this.radius = radius;
+
+        // If previous circle exists, remove it from the map before creating a new one
+        if (this.circle) this.map.removeLayer(this.circle);
+
+        // Create new circle at current position with new radius
+        // NOTE: 1775 is roughly number of meters in a mile
+        this.circle = L.circle(this.posMarker.getLatLng(), 1775 * radius, {
+            stroke: false,
+            color: 'blue',
+            fillColor: '#007bff',
+            fillOpacity: 0.25
+        });
+
+        // Add circle to map and ensure it is displayed under all the other markers
+        this.circle.addTo(this.map);
+        this.circle.bringToBack();
     }
 
     // Removes all crime markers currently on the map
