@@ -94,9 +94,6 @@ async function getCrimes() {
     prevRadius = radius;
 }
 
-// Updates circle around user marker whenever the radius gets changed
-radiusSlider.addEventListener("input", function () { map.updateCircle(radiusSlider.value); });
-
 // Updates filtered markers on previously created map object
 document.addEventListener("setfilter", function (e) {
     const crimes = e.detail.crimes;
