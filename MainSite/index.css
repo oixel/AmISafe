@@ -199,8 +199,10 @@ input[type=number] {
     width: 215px;
     height: 110px;
     background-color: rgb(255, 255, 255);
-    
+
     margin-top: 180px;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
