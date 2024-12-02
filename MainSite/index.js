@@ -87,7 +87,7 @@ async function getCrimes() {
         const startTime = Date.now();
         var crimes = await dataHandler.getCrimesInRadius(radius, dataStructure);
         const elapsedTime = Date.now() - startTime;
-        document.getElementById('elapsed-time').innerText = `Time Elapsed: ${elapsedTime.toFixed(2)/1000} seconds`;
+        document.getElementById('elapsed-time').innerText = `${elapsedTime.toFixed(2)/1000} seconds`;
         map.setCrimeMarkers(crimes);
     }
 
