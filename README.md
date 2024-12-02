@@ -5,6 +5,8 @@ This project helps visualize crimes across Gainesville through a map interface. 
 
 Link to project: www.amisaferightnow.com
 
+## Code Instructions
+
 ## Technologies Used
 HTML, CSS, JavaScript, Leaflet JavaScript Library
 
