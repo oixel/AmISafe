@@ -2,7 +2,7 @@
 
 This project helps visualize crimes across Gainesville through a map interface. Born out of a desire to find safe places in apartment hunting, this project helps students and other Gainesville residents understand their safety from a large database of crimes in Gainesville from 2010-present. Additionally, various filters are present to help narrow searches.
 
-## How To uUse
+## How To Use
 Our project can be accessed through the following link: www.amisaferightnow.com
 
 _NOTE:_
