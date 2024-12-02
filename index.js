@@ -84,11 +84,16 @@ async function getCrimes() {
         // Update the distance values of the crime objects to reflect distance to new position
         dataHandler.updateDistances(position);
 
-        // Gets crime around current position and fills the map with markers
+        // Start timer before creating data structure
         const startTime = Date.now();
+
+        // Gets crime around current position and fills the map with markers
         var crimes = await dataHandler.getCrimesInRadius(radius, dataStructure);
+
+        // Grab time after the data structure was used and output the time it took to load nearby crimes
         const elapsedTime = Date.now() - startTime;
-        document.getElementById('elapsed-time').innerText = elapsedTime.toFixed(2) / 1000;
+        document.getElementById('elapsed-time').innerText = `${elapsedTime.toFixed(2) / 1000} seconds`;
+
         map.setCrimeMarkers(crimes);
     }
 
