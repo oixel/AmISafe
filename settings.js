@@ -166,7 +166,11 @@ function setFilter() {
 }
 
 // Creates a checkbox and label with passed-in name and then inserts it into container 
-function createCheckBox(name, container) {
+function createCheckBox(name, parent) {
+    // Create additional div to ensure that checkbox and label stay toggether
+    const container = document.createElement("div");
+    container.classList.add("checkbox");
+
     // Create checkbox item and fill it with it's information
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -186,6 +190,7 @@ function createCheckBox(name, container) {
     // Insert checkbox and its label into passed-in container
     container.appendChild(checkbox);
     container.appendChild(label)
+    parent.appendChild(container);
 }
 
 // Creates the checkboxes for all filterable crime types and years

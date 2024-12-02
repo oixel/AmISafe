@@ -4,7 +4,11 @@ body {
     margin: 0;
     height: 100%;
     overflow: hidden;
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Prevents user from selecting the text on screen*/
+    user-select: none;
 }
 
 /* Set paragraph items to have no margin by default */
@@ -194,6 +198,12 @@ input[type=number] {
     align-items: center;
 }
 
+/* Placed on the checkbox and label pairs to center text to checkbox */
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
 #crimes-checkboxes {
     /* Sets crimes to be visible when menu is first opened */
     display: flex;
@@ -203,7 +213,7 @@ input[type=number] {
 #years-checkboxes {
     /* Hides years checkboxes initially*/
     display: none;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 #crimes-checkboxes,
