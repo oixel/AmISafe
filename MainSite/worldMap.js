@@ -95,13 +95,26 @@ export class WorldMap {
         // Wipe previous crime markers before rendering new ones
         this.clearCrimeMarkers();
 
+        // Tracks the number of nearby crimes with consideration of the filters
+        let count = 0;
+
         // Loops through all possible combinations of crime types and years
         for (const key of this.filters.keys()) {
             // If the checkbox for this combination is toggled on, display it!
             if (this.filters.get(key)) {
-                this.layerGroups.get(key).addTo(this.map);
+                const layerGroup = this.layerGroups.get(key);
+
+                // Add layer group to map, making the markers visible
+                layerGroup.addTo(this.map);
+
+                // Update the quantity of crimes nearby
+                count += layerGroup.getLayers().length;
             }
         }
+
+        // Displays the quantity of crimes found within radius above the user's marker
+        this.posMarker.bindPopup(`<b>${count}</b> crimes found nearby.`)
+        this.posMarker.openPopup();
     }
 
     // Fill map with all markers for all crimes in passed-in vector
@@ -151,9 +164,5 @@ export class WorldMap {
 
         // Display the new markers!
         this.renderCrimeMarkers();
-
-        // Displays the quantity of crimes found within radius above the user's marker
-        this.posMarker.bindPopup(`<b>${crimesInRadius.length}</b> crimes found nearby.`)
-        this.posMarker.openPopup();
     }
 }
