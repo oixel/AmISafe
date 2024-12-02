@@ -57,7 +57,7 @@
         <div id="toggles">
             <button id="filter-menu-button">👁️</button>
             <button id="time-button">🕒</button>
-            <button id="credits-button">ℹ️</button>
+            <button id="credits-menu-button">ℹ️</button>
         </div>
     </div>
 
@@ -73,18 +73,21 @@
     </div>
 
     <div id="time-menu">
-        <p style="text-align: center; background-color: lightgrey;"><b>Time Menu</b></p>
-
-        <p style="text-align: center; font-size: 20px; margin-top: 10px;">Time Elapsed:</p>
-        <p id="elapsed-time" style="text-align: center; font-size: 24px;"> 0 seconds</p>
+        <p id="time-elapsed">Time Elapsed:</p>
+        <p id="elapsed-time"> 0</p>
+        <p id="seconds">seconds</p>
     </div>
 
     <div id="credits-menu">
-        <p style="text-align: center; background-color: lightgrey;"><b>Credits</b></p>
-        <a href="https://data.cityofgainesville.org/Public-Safety/Crime-Responses/gvua-xt9q/data" target="_blank">Click
-            to access DataGNV</a>
-        <a href="https://leafletjs.com/" target="_blank">Leaflet: JavaScript Library</a>
-        <p>Creators: Oixel Romero, Kriti Shah, Krithika Kondapalli</p>
+        <p class="menu-title"><b>Credits</b></p>
+        <div id="credits">
+            <p><b>Data Set Used:</b> <a
+                    href="https://data.cityofgainesville.org/Public-Safety/Crime-Responses/gvua-xt9q/data"
+                    target="_blank">Data</a></p>
+
+            <p><b>Map Library:</b> <a href="https://leafletjs.com/" target="_blank">Leaflet</a></p>
+            <p><b>Creators:</b> Oixel Romero, Kriti Shah, Krithika Kondapalli</p>
+        </div>
     </div>
 
     <script src="index.js" type="module"></script>

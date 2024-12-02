@@ -16,7 +16,7 @@ var yearsTabButton = document.getElementById("years-tab-button");
 var yearsCheckboxes = document.getElementById("years-checkboxes");
 var timeButton = document.getElementById("time-button");
 var timeMenu = document.getElementById("time-menu");
-var creditsButton = document.getElementById("credits-button");
+var creditsMenuButton = document.getElementById("credits-menu-button");
 var creditsMenu = document.getElementById("credits-menu");
 
 // Add toggling to settings menu by clicking settings button
@@ -30,8 +30,14 @@ settingsButton.addEventListener("click", function () {
 
         // Re-opens the filter menu if it was previously open
         if (filterMenuButton.classList.contains("toggled-on")) {
-            filtersMenu.style.display = "block";
+            filtersMenu.style.display = "flex";
         }
+
+        // Re-opens the credits if it was previously open
+        if (creditsMenuButton.classList.contains("toggled-on")) {
+            creditsMenu.style.display = "block";
+        }
+
 
         settingsButton.textContent = "✖️";
     }
@@ -41,6 +47,9 @@ settingsButton.addEventListener("click", function () {
 
         // Hides filter menu when settings are closed
         filtersMenu.style.display = "none";
+
+        // Hides credit menu when settings are closed
+        creditsMenu.style.display = "none";
     }
 });
 
@@ -56,11 +65,10 @@ filterMenuButton.addEventListener("click", function () {
     if (!isToggledOn) {
         filterMenuButton.classList.add("toggled-on");
         filtersMenu.style.display = "flex";
-        //remove other toggles
+
+        // Close credits menu if it is currently open
         creditsMenu.style.display = "none";
-        creditsButton.classList.remove("toggled-on");
-        timeMenu.style.display = "none";
-        timeButton.classList.remove("toggled-on");
+        creditsMenuButton.classList.remove("toggled-on");
     }
     else {
         filterMenuButton.classList.remove("toggled-on");
@@ -73,13 +81,8 @@ timeButton.addEventListener("click", function () {
     let isToggledOn = timeButton.classList.contains("toggled-on");
 
     if (!isToggledOn) {
-        timeButton.classList.add("toggled-on"); 
+        timeButton.classList.add("toggled-on");
         timeMenu.style.display = "flex";
-        // turn off other toggles
-        creditsMenu.style.display = "none";
-        creditsButton.classList.remove("toggled-on");
-        filtersMenu.style.display = "none";
-        filterMenuButton.classList.remove("toggled-on");
     }
     else {
         timeButton.classList.remove("toggled-on");
@@ -88,21 +91,20 @@ timeButton.addEventListener("click", function () {
 });
 
 // Toggles the button's background color and visibility of on-screen credits
-creditsButton.addEventListener("click", function () {
-    let isToggledOn = creditsButton.classList.contains("toggled-on");
+creditsMenuButton.addEventListener("click", function () {
+    let isToggledOn = creditsMenuButton.classList.contains("toggled-on");
 
     if (!isToggledOn) {
-        creditsButton.classList.add("toggled-on"); 
+        creditsMenuButton.classList.add("toggled-on");
         creditsMenu.style.display = "flex";
-        //turn off other toggles
-        timeMenu.style.display = "none";
-        timeButton.classList.remove("toggled-on");
+
+        // Close filter menu if it is currently open
         filtersMenu.style.display = "none";
         filterMenuButton.classList.remove("toggled-on");
 
     }
     else {
-        creditsButton.classList.remove("toggled-on");
+        creditsMenuButton.classList.remove("toggled-on");
         creditsMenu.style.display = "none";
     }
 });
