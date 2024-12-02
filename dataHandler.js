@@ -54,7 +54,7 @@ export class DataHandler {
 
     // Creates array of valid crimes
     async init(position) {
-        this.crimes = await this.getCrimeData("../Crime_Responses.csv", position);
+        this.crimes = await this.getCrimeData("./Crime_Responses.csv", position);
         console.log(`${this.crimes.length} crimes loaded!`);
     }
 
