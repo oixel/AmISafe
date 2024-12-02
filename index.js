@@ -58,6 +58,7 @@ function getCurrentLocation() {
     navigator.geolocation.getCurrentPosition((pos) => {
         latitude.value = pos.coords.latitude;
         longitude.value = pos.coords.longitude;
+        setPositionMarker();
     });
 }
 
