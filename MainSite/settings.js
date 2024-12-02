@@ -56,6 +56,11 @@ filterMenuButton.addEventListener("click", function () {
     if (!isToggledOn) {
         filterMenuButton.classList.add("toggled-on");
         filtersMenu.style.display = "flex";
+        //remove other toggles
+        creditsMenu.style.display = "none";
+        creditsButton.classList.remove("toggled-on");
+        timeMenu.style.display = "none";
+        timeButton.classList.remove("toggled-on");
     }
     else {
         filterMenuButton.classList.remove("toggled-on");
@@ -70,6 +75,11 @@ timeButton.addEventListener("click", function () {
     if (!isToggledOn) {
         timeButton.classList.add("toggled-on"); 
         timeMenu.style.display = "flex";
+        // turn off other toggles
+        creditsMenu.style.display = "none";
+        creditsButton.classList.remove("toggled-on");
+        filtersMenu.style.display = "none";
+        filterMenuButton.classList.remove("toggled-on");
     }
     else {
         timeButton.classList.remove("toggled-on");
@@ -84,6 +94,12 @@ creditsButton.addEventListener("click", function () {
     if (!isToggledOn) {
         creditsButton.classList.add("toggled-on"); 
         creditsMenu.style.display = "flex";
+        //turn off other toggles
+        timeMenu.style.display = "none";
+        timeButton.classList.remove("toggled-on");
+        filtersMenu.style.display = "none";
+        filterMenuButton.classList.remove("toggled-on");
+
     }
     else {
         creditsButton.classList.remove("toggled-on");
