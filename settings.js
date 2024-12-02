@@ -35,7 +35,7 @@ settingsButton.addEventListener("click", function () {
 
         // Re-opens the credits if it was previously open
         if (creditsMenuButton.classList.contains("toggled-on")) {
-            creditsMenu.style.display = "block";
+            creditsMenu.style.display = "flex";
         }
 
 

@@ -29,10 +29,10 @@
         <button id="get-location">Get Current Location</button>
         <button id="get-crimes">Get Crimes Around Marker</button>
         <button id="reset-view">Reset View</button>
-        <form>
-            <label for="use-mouse">Click to Place Pointer</label>
+        <div id="click-to-place">
             <input type="checkbox" id="use-mouse" checked>
-        </form>
+            <label for="use-mouse">Click to Place Pointer</label>
+        </div>
     </div>
 
     <button id="settings-button">⚙️</button>
@@ -73,13 +73,13 @@
     </div>
 
     <div id="time-menu">
-        <p id="time-elapsed">Time Elapsed:</p>
-        <p id="elapsed-time"> 0</p>
-        <p id="seconds">seconds</p>
+        <p id="time-elapsed">Time Taken:</p>
+        <p id="elapsed-time">0 seconds</p>
+
     </div>
 
     <div id="credits-menu">
-        <p class="menu-title"><b>Credits</b></p>
+        <p id="credits-title"><b>Credits</b></p>
         <div id="credits">
             <p><b>Data Set Used:</b> <a
                     href="https://data.cityofgainesville.org/Public-Safety/Crime-Responses/gvua-xt9q/data"
