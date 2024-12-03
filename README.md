@@ -19,6 +19,6 @@ As part of our Data Structures & Algorithms course, we aimed to compare two data
 Users can click the settings button in the top right and toggle the timer button to observe how long it takes for the crime results to load.
 
 ## Lessons Learned:
-In terms of technicality, we learned the importance of choosing a data structure for optimization. It was interesting to observe the visible differences in load times based on different approaches. Working with real-world data was also exciting, as it allowed us to apply the concepts we learned in our Data Structures course to tangible concepts. 
+In terms of technicality, we learned the importance of choosing a data structure for optimization. It was interesting to observe the visible differences in load times based on different approaches. Working with real-world data was also exciting, as it allowed us to apply the concepts we learned in our course to tangible concepts. 
 
 From a project management perspective, this project provided a great opportunity to enhance our communication, collaboration, and GitHub skills. We needed to efficiently delegate a variety of tasks, including frontend development, backend coding, video editing, research, planning, and more. Ensuring everyone was on the same page allowed us to work smoothly and deliver a functional deliverable.
