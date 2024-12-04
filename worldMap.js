@@ -9,7 +9,15 @@ export class WorldMap {
             zoom: 13,
             zoomControl: false,
             preferCanvas: true,
-            attributionControl: false
+            attributionControl: false,
+
+            // Set bounds to general Gainesville area
+            maxBounds: [
+                // Soutwest bound
+                [29.04551617824699, -83.39447021484376],
+                // Northeast bound
+                [30.277395297359273, -80.4144287109375]
+            ]
         });
 
         // Set map to use OpenStreetMap
