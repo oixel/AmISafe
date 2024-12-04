@@ -112,6 +112,9 @@ export class WorldMap {
             }
         }
 
+        // Makes user icon happy if no crimes are around
+        if (count == 0) this.updatePosition(this.posMarker.getLatLng(), this.happyMarker);
+
         // Displays the quantity of crimes found within radius above the user's marker
         this.posMarker.bindPopup(`<b>${count}</b> crimes found nearby.`)
         this.posMarker.openPopup();
@@ -119,9 +122,6 @@ export class WorldMap {
 
     // Fill map with all markers for all crimes in passed-in vector
     setCrimeMarkers(crimesInRadius) {
-        // Makes user icon happy if no crimes are around
-        if (crimesInRadius.length == 0) this.updatePosition(this.posMarker.getLatLng(), this.happyMarker);
-
         // Wipes markers already on the board
         this.clearCrimeMarkers();
 
