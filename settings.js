@@ -2,7 +2,7 @@
 import { CRIME_TYPES } from "./crime.js";
 
 // Stores range of years in data to create checkboxes for their filters
-const YEAR_RANGE = [2010, 2024];
+const YEAR_RANGE = [2010, 2025];
 
 // Grabs elements from HTML page
 var settingsButton = document.getElementById("settings-button");
